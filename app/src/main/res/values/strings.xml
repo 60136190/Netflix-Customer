@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Netflix</string>
+    <string name="description">Bạn không thể đăng ký tài khoản Netflix trong ứng dụng.Chúng tôi biết điều này hơi phiền phức. Hãy đăng ký tham gia và quay lại để bắt đầu xem các chương trình truyền hình và phim ảnh nhé.</string>
+    <string name="lienhe">Liên hệ với Dịch vụ khách hàng của Netflix</string>
+    <string name="chungtoi">Chúng tôi sẽ kết nối cuộc gọi miễn phí bằng kết nối Internet của bạn</string>
+    <string name="tab_1">Trang chủ</string>
+    <string name="tab_2">Khám phá</string>
+    <string name="tab_3">Truyền hình</string>
+    <string name="tab_4">Thể thao</string>
+    <string name="tab_5">Thêm</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--    <string name="default_web_client_id">1099312364507-6g1lksand3ahtqp791lsbpbive0psav6.apps.googleusercontent.com</string>-->
+    <string name="default_web_client_id">1099312364507-c8epioamjqdrs8qkrgcfcpos0hvicqoo.apps.googleusercontent.com</string>
+    <string name="edittext_hint"><font size="10">Tìm kiếm</font></string>
+    <string name="comment"><font size="10">Viết bình luận...</font></string>
+
+
+    <string name="long_text">thor 2 full movie download in hindi 720p thor 2 full movie download in hindi 720p thor 2 full movie download in hindi 720p thor 2 full movie download in hindi 720p</string>
+    <string name="audio_sub">Audio &amp; Subtitle </string>
+    <string name="lock">Lock</string>
+    <string name="speed_1x">Speed(1x)</string>
+    <string name="rotate">Rotate</string>
+    <string name="tap_to_unlock">Tap to Unlock</string>
+    <string name="screen_locked">Screen Locked</string>
+    <string name="unlock_controls">Unlock Controls?</string>
+    <string name="folder_name">Folder Name</string>
+    <string name="_10_videos">10 videos</string>
+    <string name="_1_00gb">1.00Gb</string>
+    <string name="_00_00_00">00:00:00</string>
+    <string name="search">Search file name</string>
+
+
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="about_us">About us</string>
+    <string name="version">Version</string>
+    <string name="_1_0_1">1.0.1</string>
+    <string name="direct_n_app">Direct\nApp</string>
+    <string name="app_n_link">App\nLink</string>
+    <string name="share">Share</string>
+    <string name="rename">Rename</string>
+    <string name="title">Name:</string>
+    <string name="path">Path:</string>
+    <string name="size">Size:</string>
+    <string name="duration">Duration:</string>
+    <string name="resolution">Resolution:</string>
+</resources>

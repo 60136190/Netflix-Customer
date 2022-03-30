@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/home"
+        android:title="Home" />
+    <item
+        android:id="@+id/discovery"
+        android:enabled="true"
+        android:icon="@drawable/ic_compass"
+        android:title="Discover"
+        />
+    <item
+        android:id="@+id/search"
+        android:enabled="true"
+        android:icon="@drawable/search"
+        android:title="Search" />
+    <item
+        android:id="@+id/more"
+        android:enabled="true"
+        android:icon="@drawable/download"
+        android:title="Downloads" />
+</menu>

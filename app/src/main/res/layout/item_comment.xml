@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ct_lis_comment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_10sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_user"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:src="@drawable/backgroundslider"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_name_of_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:textSize="@dimen/_13ssp"
+        android:textColor="@color/white"
+        android:text="Thai Van Nam"
+        app:layout_constraintTop_toTopOf="@+id/img_user"
+        app:layout_constraintLeft_toRightOf="@+id/img_user"/>
+
+    <TextView
+        android:id="@+id/tv_date_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1 day ago"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:textColor="@color/gray_dot"
+        android:textSize="@dimen/_10ssp"
+        app:layout_constraintTop_toTopOf="@+id/tv_name_of_user"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_name_of_user"
+        app:layout_constraintLeft_toRightOf="@+id/tv_name_of_user"/>
+
+    <TextView
+        android:id="@+id/tv_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="your comment"
+        android:textSize="@dimen/_10ssp"
+        android:textColor="@color/gray_dot"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_name_of_user"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_of_user"/>
+
+    <ImageView
+        android:id="@+id/img_edit"
+        android:layout_width="@dimen/_15sdp"
+        android:layout_height="@dimen/_15sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:visibility="invisible"
+        android:src="@drawable/ic_edit"
+        app:layout_constraintTop_toTopOf="@+id/img_delete"
+        app:layout_constraintBottom_toBottomOf="@+id/img_delete"
+        app:layout_constraintRight_toLeftOf="@+id/img_delete"/>
+
+
+    <ImageView
+        android:id="@+id/img_delete"
+        android:layout_width="@dimen/_15sdp"
+        android:layout_height="@dimen/_15sdp"
+        android:layout_margin="@dimen/_10sdp"
+        android:visibility="invisible"
+        android:src="@drawable/ic_delete"
+        app:layout_constraintTop_toTopOf="@+id/img_user"
+        app:layout_constraintBottom_toBottomOf="@+id/img_user"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
