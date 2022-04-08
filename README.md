@@ -7,19 +7,19 @@
 ![changestate](https://user-images.githubusercontent.com/45253067/162460628-dd76ec0a-bf5e-48a2-a3a0-775c0a169013.gif)
 
 * API using
-*Upload:
+* Upload:
 
-Upload ảnh người dùng : post --> http://localhost:5000/api/uploadImageUser
-Xóa ảnh người dùng trên cloud : post --> http://localhost:5000/api/destroyImageUser
-*Customer:
+- Upload ảnh người dùng : post --> http://localhost:5000/api/uploadImageUser
+- Xóa ảnh người dùng trên cloud : post --> http://localhost:5000/api/destroyImageUser
+* Customer:
 
-Đăng ký tài khoản khách hàng: post --> http://localhost:5000/api/auth/customer/register
-Xác thực email đăng ký: get --> http://localhost:5000/api/auth/admin/verify/:userId/:uniqueString
-Đăng nhập tài khoản khách hàng : post --> http://localhost:5000/api/auth/customer/login
-Đăng xuất tài khoản: get --> http://localhost:5000/api/auth/customer/logout
-Xem profile: get --> http://localhost:5000/api/auth/customer/profile
-Chỉnh sửa profile: patch --> http://localhost:5000/api/auth/customer/profile/update
-Refresh token : get --> http://localhost:5000/api/auth/customer/refresh_token
+- Đăng ký tài khoản khách hàng: post --> http://localhost:5000/api/auth/customer/register
+- Xác thực email đăng ký: get --> http://localhost:5000/api/auth/admin/verify/:userId/:uniqueString
+- Đăng nhập tài khoản khách hàng : post --> http://localhost:5000/api/auth/customer/login
+- Đăng xuất tài khoản: get --> http://localhost:5000/api/auth/customer/logout
+- Xem profile: get --> http://localhost:5000/api/auth/customer/profile
+- Chỉnh sửa profile: patch --> http://localhost:5000/api/auth/customer/profile/update
+- Refresh token : get --> http://localhost:5000/api/auth/customer/refresh_token
 Thay đổi mật khẩu : patch --> http://localhost:5000/api/auth/customer/changePassword
 Quên mật khẩu tài khoản khách hàng: post --> http://localhost:5000/api/auth/customer/forget
 Link reset mật khẩu khi quên: put --> http://localhost:5000/api/auth/customer/password/reset/:token
