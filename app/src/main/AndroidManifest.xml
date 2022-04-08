@@ -21,6 +21,9 @@
         android:theme="@style/Theme.MovieTTN"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.SelectStateActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.ListFavotireActivity"
             android:exported="false" />
         <activity

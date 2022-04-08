@@ -79,12 +79,12 @@ public class InformationUserActivity extends AppCompatActivity {
                             .load(im)
                             .into(imgUser);
                 }
-//                if (response.body().getUser().getSex() == 1) {
-//                    tvSex.setText("Male");
-//                } else {
-//                    tvSex.setText("Female");
-//
-//                }
+                if (response.body().getUser().getSex() == 1) {
+                    tvSex.setText("Male");
+                } else {
+                    tvSex.setText("Female");
+
+                }
             }
 
             @Override

@@ -17,9 +17,6 @@ public class User implements Serializable {
     @SerializedName("email")
     @Expose
     private String email;
-    @SerializedName("password")
-    @Expose
-    private String password;
     @SerializedName("role")
     @Expose
     private Integer role;
@@ -35,6 +32,12 @@ public class User implements Serializable {
     @SerializedName("date_of_birth")
     @Expose
     private String dateOfBirth;
+    @SerializedName("verified")
+    @Expose
+    private Boolean verified;
+    @SerializedName("adult")
+    @Expose
+    private String adult;
     @SerializedName("createdAt")
     @Expose
     private String createdAt;
@@ -67,14 +70,6 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Integer getRole() {
@@ -115,6 +110,22 @@ public class User implements Serializable {
 
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public Boolean getVerified() {
+        return verified;
+    }
+
+    public void setVerified(Boolean verified) {
+        this.verified = verified;
+    }
+
+    public String getAdult() {
+        return adult;
+    }
+
+    public void setAdult(String adult) {
+        this.adult = adult;
     }
 
     public String getCreatedAt() {

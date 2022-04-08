@@ -7,12 +7,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.moviettn.tab_layout_home.TabCategoriesFragment;
-import com.example.moviettn.tab_layout_home.TabTvShowsFragment;
 import com.example.moviettn.tab_layout_home.TabHomeFragment;
 import com.example.moviettn.tab_layout_home.TabMoviesFragment;
+import com.example.moviettn.tab_layout_home.TabTvShowsFragment;
+import com.example.moviettn.tab_layout_new_hot.ComingSoonFragment;
+import com.example.moviettn.tab_layout_new_hot.WatchingFragment;
 
-public class ViewPagerTabAdapter extends FragmentStatePagerAdapter {
-    public ViewPagerTabAdapter(@NonNull FragmentManager fm, int behavior) {
+public class ViewPagerTabNewHotAdapter extends FragmentStatePagerAdapter {
+    public ViewPagerTabNewHotAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
     }
 
@@ -21,22 +23,18 @@ public class ViewPagerTabAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return new TabHomeFragment();
+                return new ComingSoonFragment();
             case 1:
-                return new TabMoviesFragment();
-            case 2:
-                return new TabTvShowsFragment();
-            case 3:
-                return new TabCategoriesFragment();
+                return new WatchingFragment();
             default:
-                return new TabHomeFragment();
+                return new ComingSoonFragment();
         }
 
     }
 
     @Override
     public int getCount() {
-        return 4;
+        return 2;
     }
 
     @Nullable
@@ -45,16 +43,10 @@ public class ViewPagerTabAdapter extends FragmentStatePagerAdapter {
         String title = "";
         switch (position){
             case 0:
-                title = "Home";
+                title = "Coming Soon";
                 break;
             case 1:
-                title = "Movies";
-                break;
-            case 2:
-                title = "Tv Shows";
-                break;
-            case 3:
-                title = "Categories";
+                title = "Everyone's Watching";
                 break;
         }
         return title;

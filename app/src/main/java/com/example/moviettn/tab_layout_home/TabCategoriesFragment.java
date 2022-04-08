@@ -1,4 +1,4 @@
-package com.example.moviettn.tab_layout;
+package com.example.moviettn.tab_layout_home;
 
 import android.os.Bundle;
 
@@ -21,7 +21,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TabHomeFragment extends Fragment {
+
+public class TabCategoriesFragment extends Fragment {
 
     private RecyclerView rcvPersonal;
     private RecyclerView rcvTrending;
@@ -33,7 +34,7 @@ public class TabHomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_tab_home, container, false);
+        view = inflater.inflate(R.layout.fragment_tab_categories, container, false);
         initUi();
         listTopFilm();
         listTrending();

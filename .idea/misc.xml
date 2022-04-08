@@ -70,6 +70,7 @@
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/drawable/ic_tv.xml" value="0.19166666666666668" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/drawable/ic_user.xml" value="0.19166666666666668" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/drawable/selector_favorite.xml" value="0.19166666666666668" />
+        <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/drawable/tab_indicator.xml" value="0.18871794871794872" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/drawable/white_round.xml" value="0.19166666666666668" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/activity_change_password.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/activity_detail_category_film.xml" value="0.22" />
@@ -84,6 +85,7 @@
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/activity_login.xml" value="0.16666666666666666" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/activity_register.xml" value="0.17552083333333332" />
+        <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/activity_select_state.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/activity_slider.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/activity_update_information_user.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/activity_watch.xml" value="0.17552083333333332" />
@@ -93,6 +95,7 @@
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/dialog_confirm_delete.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/dialog_confirm_logout.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/dialog_edit_comment.xml" value="0.17552083333333332" />
+        <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_coming_soon.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_discorvery.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_discovery.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_even.xml" value="0.17552083333333332" />
@@ -101,6 +104,7 @@
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_home.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_kplus.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_more.xml" value="0.17552083333333332" />
+        <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_new_hot.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_pesonal.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_search.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_sport.xml" value="0.17552083333333332" />
@@ -109,6 +113,7 @@
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_tab_movies.xml" value="0.14351851851851852" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_tab_tvshows.xml" value="0.14351851851851852" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_tv.xml" value="0.10666666666666667" />
+        <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_watching.xml" value="0.16145833333333334" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/item_comment.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/item_horizontal_film.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/item_list_favorite.xml" value="0.17552083333333332" />

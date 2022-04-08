@@ -12,16 +12,17 @@ import android.view.ViewGroup;
 
 import com.example.moviettn.R;
 import com.example.moviettn.adapters.ViewPagerTabAdapter;
+import com.example.moviettn.adapters.ViewPagerTabNewHotAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 
-public class DiscoveryFragment extends Fragment {
+public class NewHotFragment extends Fragment {
 
 
     private View view;
     private TabLayout tableLayout;
     private ViewPager viewPager;
-    public DiscoveryFragment() {
+    public NewHotFragment() {
         // Required empty public constructor
     }
 
@@ -29,11 +30,11 @@ public class DiscoveryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view =  inflater.inflate(R.layout.fragment_discovery, container, false);
+        view =  inflater.inflate(R.layout.fragment_new_hot, container, false);
         tableLayout = view.findViewById(R.id.tab_tv_show);
         viewPager = view.findViewById(R.id.view_pager_tv_show);
 
-        ViewPagerTabAdapter viewPagerBillAndRatingAdapter = new ViewPagerTabAdapter(getParentFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        ViewPagerTabNewHotAdapter viewPagerBillAndRatingAdapter = new ViewPagerTabNewHotAdapter(getParentFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(viewPagerBillAndRatingAdapter);
         view.clearAnimation();
 

@@ -6,6 +6,7 @@ import com.example.moviettn.model.request.ForgetPasswordRequest;
 import com.example.moviettn.model.request.LoginGoogleRequest;
 import com.example.moviettn.model.request.LoginRequest;
 import com.example.moviettn.model.request.RegisterRequest;
+import com.example.moviettn.model.request.UpdateStateUserRequest;
 import com.example.moviettn.model.request.UpdateUserRequest;
 import com.example.moviettn.model.response.LoginGoogleResponse;
 import com.example.moviettn.model.response.LoginResponse;
@@ -13,6 +14,7 @@ import com.example.moviettn.model.response.ProfileResponse;
 import com.example.moviettn.model.response.RefreshTokenResponse;
 import com.example.moviettn.model.response.RegisterResponse;
 import com.example.moviettn.model.response.ResponseDTO;
+import com.example.moviettn.model.response.UpdateStateUserResponse;
 import com.example.moviettn.model.response.UploadImageResponse;
 
 import java.util.HashMap;
@@ -20,6 +22,7 @@ import java.util.HashMap;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.HeaderMap;
@@ -73,4 +76,10 @@ public interface User {
     // login google
     @POST("api/auth/customer/loginGoogle")
     Call<LoginGoogleResponse> loginGoogle(@HeaderMap HashMap<String, String> hashMap, @Body LoginGoogleRequest loginGoogleRequest);
+
+    // update state user
+    @POST("api/film/selectForAdultOrChild")
+    Call<UpdateStateUserResponse> updateStateUser(@Header("Authorization") String authorization, @Body UpdateStateUserRequest updateStateUserRequest);
+
+
 }

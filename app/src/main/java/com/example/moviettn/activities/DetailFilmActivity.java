@@ -190,9 +190,8 @@ public class DetailFilmActivity extends AppCompatActivity {
                                     public void onResponse(Call<CommentResponse> call, Response<CommentResponse> response) {
                                         listCommentFilmAdapter = new ListCommentFilmAdapter(DetailFilmActivity.this, response.body().getData());
                                         recyclerViewComment.setAdapter(listCommentFilmAdapter);
-                                        listCommentFilmAdapter.notifyDataSetChanged();
-
                                         edtComment.setText("");
+
                                     }
 
                                     @Override
@@ -303,6 +302,7 @@ public class DetailFilmActivity extends AppCompatActivity {
                     }, 1000);
                 }
             });
+
 
         }
 

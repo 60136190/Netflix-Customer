@@ -11,7 +11,7 @@ import com.example.moviettn.R;
 import com.example.moviettn.fragments.SearchFragment;
 import com.example.moviettn.fragments.HomeFragment;
 import com.example.moviettn.fragments.MoreFragment;
-import com.example.moviettn.fragments.DiscoveryFragment;
+import com.example.moviettn.fragments.NewHotFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new HomeFragment();
                     break;
                 case R.id.discovery:
-                    fragment = new DiscoveryFragment();
+                    fragment = new NewHotFragment();
                     break;
                 case R.id.search:
                     fragment = new SearchFragment();

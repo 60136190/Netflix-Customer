@@ -29,6 +29,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.example.moviettn.R;
+import com.example.moviettn.activities.ChangePasswordActivity;
 import com.example.moviettn.activities.InformationUserActivity;
 import com.example.moviettn.activities.ListFavotireActivity;
 import com.example.moviettn.adapters.VerticalFilmAdapter;
@@ -103,6 +104,7 @@ public class HomeFragment extends Fragment {
                 TextView tv_Logout = viewdialog.findViewById(R.id.tv_logout);
                 LinearLayout ln_MyList = viewdialog.findViewById(R.id.ln_my_list);
                 LinearLayout ln_Account = viewdialog.findViewById(R.id.ln_account);
+                LinearLayout ln_Setting = viewdialog.findViewById(R.id.ln_setting);
                 img_close.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -156,6 +158,13 @@ public class HomeFragment extends Fragment {
                         startActivity(intent);
                     }
                 });
+                ln_Setting.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getContext(), ChangePasswordActivity.class);
+                        startActivity(intent);
+                    }
+                });
 
             }
         });
@@ -171,6 +180,7 @@ public class HomeFragment extends Fragment {
         gifChangeState = view.findViewById(R.id.gif_change_state);
     }
 
+    // slider if me need
 //    public void flipperImages(int image) {
 //        ImageView imageView = new ImageView(getContext());
 //        imageView.setBackgroundResource(image);
@@ -194,6 +204,15 @@ public class HomeFragment extends Fragment {
                         Glide.with(getContext())
                                 .load(im)
                                 .into(imgUser);
+                    }
+
+                    String adult = response.body().getUser().getAdult();
+                    String a="1";
+                    if (adult.equals(a)){
+                        imgLogoKid.setVisibility(View.INVISIBLE);
+                    }
+                    else{
+                        imgLogoKid.setVisibility(View.VISIBLE);
                     }
                 } else {
                     setProgressBar();
