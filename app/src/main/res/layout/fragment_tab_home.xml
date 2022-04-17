@@ -39,7 +39,7 @@
                 android:layout_height="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginLeft="@dimen/_30sdp"
-                android:src="@drawable/tick"
+                android:src="@drawable/ic_add"
                 app:tint="@color/white"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_directors"/>

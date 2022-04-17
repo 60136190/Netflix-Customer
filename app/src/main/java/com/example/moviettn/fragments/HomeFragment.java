@@ -32,6 +32,7 @@ import com.example.moviettn.R;
 import com.example.moviettn.activities.ChangePasswordActivity;
 import com.example.moviettn.activities.InformationUserActivity;
 import com.example.moviettn.activities.ListFavotireActivity;
+import com.example.moviettn.activities.UpdateInformationUserActivity;
 import com.example.moviettn.adapters.VerticalFilmAdapter;
 import com.example.moviettn.adapters.ViewPagerTabAdapter;
 import com.example.moviettn.api.ApiClient;
@@ -102,6 +103,7 @@ public class HomeFragment extends Fragment {
                 ImageView img_Adults = viewdialog.findViewById(R.id.img_adults);
                 ImageView img_Children = viewdialog.findViewById(R.id.img_children);
                 TextView tv_Logout = viewdialog.findViewById(R.id.tv_logout);
+                TextView tv_edit_profile = viewdialog.findViewById(R.id.tv_edit_profile);
                 LinearLayout ln_MyList = viewdialog.findViewById(R.id.ln_my_list);
                 LinearLayout ln_Account = viewdialog.findViewById(R.id.ln_account);
                 LinearLayout ln_Setting = viewdialog.findViewById(R.id.ln_setting);
@@ -162,6 +164,13 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getContext(), ChangePasswordActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                tv_edit_profile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getContext(), UpdateInformationUserActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -255,7 +264,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void logout() {
-        final Dialog dialog = new Dialog(getContext());
+         Dialog dialog = new Dialog(getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_confirm_delete);
 

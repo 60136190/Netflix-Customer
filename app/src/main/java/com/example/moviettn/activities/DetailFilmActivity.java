@@ -78,7 +78,6 @@ public class DetailFilmActivity extends AppCompatActivity {
             Call<DetailFilmResponse> detailFilmResponseCall = ApiClient.getFilmService().detailFilm(
                     StoreUtil.get(DetailFilmActivity.this, Contants.accessToken), idFilm);
             detailFilmResponseCall.enqueue(new Callback<DetailFilmResponse>() {
-                @SuppressLint("ResourceType")
                 @Override
                 public void onResponse(Call<DetailFilmResponse> call, Response<DetailFilmResponse> response) {
                     if (response.isSuccessful()) {
@@ -214,7 +213,7 @@ public class DetailFilmActivity extends AppCompatActivity {
             });
 
 
-            // get list comment
+             //get list comment
             Call<CommentResponse> listFavoriteFilmResponseCall = ApiClient.getFilmService().getAllCommentFollowFilm(
                     StoreUtil.get(DetailFilmActivity.this, Contants.accessToken), idFilm);
             listFavoriteFilmResponseCall.enqueue(new Callback<CommentResponse>() {
@@ -222,7 +221,6 @@ public class DetailFilmActivity extends AppCompatActivity {
                 public void onResponse(Call<CommentResponse> call, Response<CommentResponse> response) {
                     listCommentFilmAdapter = new ListCommentFilmAdapter(DetailFilmActivity.this, response.body().getData());
                     recyclerViewComment.setAdapter(listCommentFilmAdapter);
-                    listCommentFilmAdapter.notifyDataSetChanged();
                 }
 
                 @Override

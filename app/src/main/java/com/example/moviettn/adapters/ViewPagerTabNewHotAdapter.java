@@ -11,6 +11,7 @@ import com.example.moviettn.tab_layout_home.TabHomeFragment;
 import com.example.moviettn.tab_layout_home.TabMoviesFragment;
 import com.example.moviettn.tab_layout_home.TabTvShowsFragment;
 import com.example.moviettn.tab_layout_new_hot.ComingSoonFragment;
+import com.example.moviettn.tab_layout_new_hot.Top10Fragment;
 import com.example.moviettn.tab_layout_new_hot.WatchingFragment;
 
 public class ViewPagerTabNewHotAdapter extends FragmentStatePagerAdapter {
@@ -26,6 +27,8 @@ public class ViewPagerTabNewHotAdapter extends FragmentStatePagerAdapter {
                 return new ComingSoonFragment();
             case 1:
                 return new WatchingFragment();
+            case 2:
+                return new Top10Fragment();
             default:
                 return new ComingSoonFragment();
         }
@@ -34,7 +37,7 @@ public class ViewPagerTabNewHotAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 
     @Nullable
@@ -43,10 +46,13 @@ public class ViewPagerTabNewHotAdapter extends FragmentStatePagerAdapter {
         String title = "";
         switch (position){
             case 0:
-                title = "Coming Soon";
+                title = "\uD83C\uDF7F Coming Soon";
                 break;
             case 1:
-                title = "Everyone's Watching";
+                title = "\uD83D\uDD25 Everyone's Watching";
+                break;
+            case 2:
+                title = "\uD83D\uDD1F Top 10";
                 break;
         }
         return title;

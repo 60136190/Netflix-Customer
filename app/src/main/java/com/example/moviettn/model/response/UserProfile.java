@@ -1,12 +1,9 @@
 package com.example.moviettn.model.response;
 
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-
-public class User implements Serializable {
+public class UserProfile {
     @SerializedName("_id")
     @Expose
     private String id;
@@ -16,9 +13,6 @@ public class User implements Serializable {
     @SerializedName("email")
     @Expose
     private String email;
-    @SerializedName("password")
-    @Expose
-    private String password;
     @SerializedName("role")
     @Expose
     private Integer role;
@@ -72,14 +66,6 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Integer getRole() {
@@ -161,5 +147,4 @@ public class User implements Serializable {
     public void setV(Integer v) {
         this.v = v;
     }
-
 }

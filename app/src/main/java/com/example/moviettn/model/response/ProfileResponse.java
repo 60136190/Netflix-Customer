@@ -1,12 +1,10 @@
 package com.example.moviettn.model.response;
 
-
-
 public class ProfileResponse {
         private Integer status;
         private Boolean success;
 
-        private User user;
+        private UserProfile user;
 
         public Integer getStatus() {
             return status;
@@ -24,11 +22,11 @@ public class ProfileResponse {
             this.success = success;
         }
 
-        public User getUser() {
+        public UserProfile getUser() {
             return user;
         }
 
-        public void setUser(User user) {
+        public void setUser(UserProfile user) {
             this.user = user;
         }
 

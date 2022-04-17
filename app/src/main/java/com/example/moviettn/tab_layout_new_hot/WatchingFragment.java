@@ -3,64 +3,60 @@ package com.example.moviettn.tab_layout_new_hot;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.moviettn.R;
+import com.example.moviettn.adapters.ComingSoonAdapter;
+import com.example.moviettn.adapters.EveyoneWatchingAdapter;
+import com.example.moviettn.api.ApiClient;
+import com.example.moviettn.model.response.FilmResponse;
+import com.example.moviettn.utils.Contants;
+import com.example.moviettn.utils.StoreUtil;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link WatchingFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class WatchingFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public WatchingFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment WatchingFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static WatchingFragment newInstance(String param1, String param2) {
-        WatchingFragment fragment = new WatchingFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
+    private View view;
+    private RecyclerView rcv_everyone_watching;
+    private EveyoneWatchingAdapter eveyoneWatchingAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_watching, container, false);
+        view = inflater.inflate(R.layout.fragment_watching, container, false);
+        initUi();
+        getListComingSoon();
+        rcv_everyone_watching.setLayoutManager(new LinearLayoutManager(getContext()));
+        rcv_everyone_watching.setHasFixedSize(true);
+
+        return view;
+    }
+
+
+    private void initUi() {
+        rcv_everyone_watching = view.findViewById(R.id.rcv_everyone_watching);
+    }
+
+    private void getListComingSoon() {
+        Call<FilmResponse> responseDTOCall = ApiClient.getFilmService().getAllFilm(
+                StoreUtil.get(getContext(), Contants.accessToken));
+        responseDTOCall.enqueue(new Callback<FilmResponse>() {
+            @Override
+            public void onResponse(Call<FilmResponse> call, Response<FilmResponse> response) {
+                eveyoneWatchingAdapter = new EveyoneWatchingAdapter(getContext(), response.body().getData());
+                rcv_everyone_watching.setAdapter(eveyoneWatchingAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<FilmResponse> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
 }

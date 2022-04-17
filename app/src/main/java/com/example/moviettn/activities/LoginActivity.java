@@ -69,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
         tvSupport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 View viewdialog = getLayoutInflater().inflate(R.layout.bottom_sheet_help, null);
                 BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(LoginActivity.this);
                 bottomSheetDialog.setContentView(viewdialog);

@@ -4,14 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".tab_layout_new_hot.WatchingFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
-        android:id="@+id/img_burn"
+        android:id="@+id/img_top10"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
         android:layout_margin="@dimen/_10sdp"
-        android:src="@drawable/fire"
+        android:src="@drawable/topten"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -19,19 +18,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_10sdp"
-        android:text="Everyone's Watching"
+        android:text="Top 10"
         android:textColor="@color/white"
         android:textSize="@dimen/_13ssp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/img_burn"
-        app:layout_constraintLeft_toRightOf="@+id/img_burn"
-        app:layout_constraintTop_toTopOf="@+id/img_burn" />
+        app:layout_constraintBottom_toBottomOf="@+id/img_top10"
+        app:layout_constraintLeft_toRightOf="@+id/img_top10"
+        app:layout_constraintTop_toTopOf="@+id/img_top10" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcv_everyone_watching"
+        android:id="@+id/rcv_top_ten"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         tools:listitem="@layout/item_everyone_watching"
-        app:layout_constraintTop_toBottomOf="@+id/img_burn"
+        app:layout_constraintTop_toBottomOf="@+id/img_top10"
         app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

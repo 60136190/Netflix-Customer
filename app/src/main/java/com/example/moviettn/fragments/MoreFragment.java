@@ -1,7 +1,5 @@
 package com.example.moviettn.fragments;
-
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -18,48 +16,45 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-
+import com.bumptech.glide.Glide;
 import com.example.moviettn.R;
+import com.example.moviettn.activities.ChangePasswordActivity;
+import com.example.moviettn.activities.InformationUserActivity;
+import com.example.moviettn.activities.ListFavotireActivity;
+import com.example.moviettn.activities.UpdateInformationUserActivity;
 import com.example.moviettn.api.ApiClient;
 import com.example.moviettn.model.response.ProfileResponse;
 import com.example.moviettn.model.response.ResponseDTO;
 import com.example.moviettn.utils.Contants;
 import com.example.moviettn.utils.StoreUtil;
 import com.github.ybq.android.spinkit.style.Circle;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
-import java.io.File;
 import java.util.concurrent.Executor;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
 public class MoreFragment extends Fragment {
 
-    private LinearLayout lnInformation;
-    private LinearLayout lnLogout;
     private ImageView imgUser;
-    private TextView tvFullName;
     private View view;
     GoogleSignInClient mGoogleSignInClient;
-    public MoreFragment() {
-        // Required empty public constructor
-    }
-
+    private CardView cardview_img_user;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.fragment_more, container, false);
         getProfile();
         initUi();
@@ -67,26 +62,99 @@ public class MoreFragment extends Fragment {
                 .requestEmail()
                 .build();
 
-        mGoogleSignInClient = GoogleSignIn.getClient(getContext(), gso);
-
-        lnLogout.setOnClickListener(new View.OnClickListener() {
+        cardview_img_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                logout();
+                View viewdialog = getLayoutInflater().inflate(R.layout.bottom_sheet_manage_profile, null);
+                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getContext());
+                bottomSheetDialog.setContentView(viewdialog);
+                bottomSheetDialog.show();
+                ImageView img_close = viewdialog.findViewById(R.id.img_close);
+                ImageView img_Adults = viewdialog.findViewById(R.id.img_adults);
+                ImageView img_Children = viewdialog.findViewById(R.id.img_children);
+                TextView tv_Logout = viewdialog.findViewById(R.id.tv_logout);
+                TextView tv_edit_profile = viewdialog.findViewById(R.id.tv_edit_profile);
+                LinearLayout ln_MyList = viewdialog.findViewById(R.id.ln_my_list);
+                LinearLayout ln_Account = viewdialog.findViewById(R.id.ln_account);
+                LinearLayout ln_Setting = viewdialog.findViewById(R.id.ln_setting);
+                img_close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        bottomSheetDialog.dismiss();
+                    }
+                });
+                tv_Logout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        logout();
+                    }
+                });
+                ln_MyList.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getContext(), ListFavotireActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                ln_Account.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getContext(), InformationUserActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                ln_Setting.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getContext(), ChangePasswordActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                tv_edit_profile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getContext(), UpdateInformationUserActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
             }
         });
+
         return view;
     }
 
     private void initUi() {
-        lnInformation = view.findViewById(R.id.ln_information);
-        lnLogout = view.findViewById(R.id.ln_logout);
-        tvFullName = view.findViewById(R.id.tv_fullname);
+        cardview_img_user = view.findViewById(R.id.cardview_img_user);
         imgUser = view.findViewById(R.id.img_user);
     }
 
-    public void logout(){
-        final Dialog dialog = new Dialog(getContext());
+    public void getProfile() {
+        Call<ProfileResponse> proifileResponseCall = ApiClient.getUserService().getProfile(
+                StoreUtil.get(getContext(), "Authorization"));
+        proifileResponseCall.enqueue(new Callback<ProfileResponse>() {
+            @Override
+            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+                if (response.isSuccessful()) {
+                    String im = response.body().getUser().getImage().getUrl();
+                    if (im.isEmpty()) {
+                        imgUser.setImageResource(R.drawable.backgroundslider);
+                    } else {
+                        Glide.with(getContext())
+                                .load(im)
+                                .into(imgUser);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfileResponse> call, Throwable t) {
+                Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    public void logout() {
+        Dialog dialog = new Dialog(getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_confirm_delete);
 
@@ -101,7 +169,7 @@ public class MoreFragment extends Fragment {
         WindowManager.LayoutParams windowAtribute = window.getAttributes();
         window.setAttributes(windowAtribute);
 
-        ProgressBar progressBar =dialog.findViewById(R.id.spin_kit);
+        ProgressBar progressBar = dialog.findViewById(R.id.spin_kit);
         Button btnCancel = dialog.findViewById(R.id.btn_cancel);
         Button btnLogout = dialog.findViewById(R.id.btn_confirm_delete);
 
@@ -158,6 +226,7 @@ public class MoreFragment extends Fragment {
                             countDownTimer.start();
                         }
                     }
+
                     //
                     @Override
                     public void onFailure(Call<ResponseDTO> call, Throwable t) {
@@ -166,63 +235,6 @@ public class MoreFragment extends Fragment {
                 });
             }
         });
-    }
-
-    public void getProfile() {
-        Call<ProfileResponse> proifileResponseCall = ApiClient.getUserService().getProfile(
-                StoreUtil.get(getContext(), "Authorization"));
-        proifileResponseCall.enqueue(new Callback<ProfileResponse>() {
-            @Override
-            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
-//                String fullName = response.body().getUser().getFullname();
-//                String im = response.body().getUser().getImage().getUrl();
-//                tvFullName.setText(fullName);
-//
-//
-//                if (im.isEmpty()) {
-//                    imgUser.setImageResource(R.drawable.backgroundslider);
-//                }else{
-//                    Glide.with(getContext())
-//                            .load(im)
-//                            .into(imgUser);
-//                }
-            }
-
-            @Override
-            public void onFailure(Call<ProfileResponse> call, Throwable t) {
-
-            }
-        });
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        deleteCache(getContext());
-    }
-
-    public static void deleteCache(Context context) {
-        try {
-            File dir = context.getCacheDir();
-            deleteDir(dir);
-        } catch (Exception e) { e.printStackTrace();}
-    }
-
-    public static boolean deleteDir(File dir) {
-        if (dir != null && dir.isDirectory()) {
-            String[] children = dir.list();
-            for (int i = 0; i < children.length; i++) {
-                boolean success = deleteDir(new File(dir, children[i]));
-                if (!success) {
-                    return false;
-                }
-            }
-            return dir.delete();
-        } else if(dir!= null && dir.isFile()) {
-            return dir.delete();
-        } else {
-            return false;
-        }
     }
 
     private void signOut() {

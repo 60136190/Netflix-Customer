@@ -38,7 +38,7 @@ public class InformationUserActivity extends AppCompatActivity {
         btnOpenUpdateUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(InformationUserActivity.this,UpdateInformationUserActivity.class);
+                Intent intent = new Intent(InformationUserActivity.this,ChangePasswordActivity.class);
                 startActivity(intent);
                 finish();
             }

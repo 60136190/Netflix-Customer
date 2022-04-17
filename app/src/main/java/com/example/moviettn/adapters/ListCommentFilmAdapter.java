@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +17,9 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.moviettn.R;
 import com.example.moviettn.activities.DetailFilmActivity;
 import com.example.moviettn.api.ApiClient;
@@ -45,6 +44,7 @@ public class ListCommentFilmAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     private Context mContext;
     List<Comment> mCommentList;
+
     public ListCommentFilmAdapter(Context mContext, List<Comment> mCommentList) {
         this.mContext = mContext;
         this.mCommentList = mCommentList;
@@ -68,14 +68,12 @@ public class ListCommentFilmAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         String strIdComment = comment.getId();
         String strIdFilm = comment.getFilm();
 
-
         Call<ProfileResponse> proifileResponseCall = ApiClient.getUserService().getProfile(
                 StoreUtil.get(mContext, "Authorization"));
         proifileResponseCall.enqueue(new Callback<ProfileResponse>() {
             @Override
             public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
                 String idUserProfile = response.body().getUser().getId();
-
                 if (idUserProfile.equals(idUser)){
                     ((ItemViewHolder) holder).imgEdit.setVisibility(View.VISIBLE);
                     ((ItemViewHolder) holder).imgDelete.setVisibility(View.VISIBLE);
@@ -83,6 +81,7 @@ public class ListCommentFilmAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     ((ItemViewHolder) holder).imgEdit.setVisibility(View.INVISIBLE);
                     ((ItemViewHolder) holder).imgDelete.setVisibility(View.INVISIBLE);
                 }
+
             }
 
             @Override
@@ -90,7 +89,6 @@ public class ListCommentFilmAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
             }
         });
-        ((ItemViewHolder) holder).tvNameOfUser.setText(idUser);
         ((ItemViewHolder) holder).tvComment.setText(strComment);
         ((ItemViewHolder) holder).tvNameOfUser.setText(nameOfUser);
         Picasso.with(mContext)

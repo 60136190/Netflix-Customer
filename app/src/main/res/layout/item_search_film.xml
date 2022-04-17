@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/_5sdp"
     android:layout_marginLeft="@dimen/_5sdp"
+    android:background="@color/black"
     app:cardCornerRadius="5dp">
 
     <androidx.cardview.widget.CardView
@@ -59,7 +60,8 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_title_film"
             app:layout_constraintBottom_toBottomOf="@+id/tv_title_film"
-            app:layout_constraintLeft_toRightOf="@+id/tv_title_film"/>
+            app:layout_constraintLeft_toRightOf="@+id/tv_title_film"
+            app:tint="@color/white" />
     </LinearLayout>
 
 

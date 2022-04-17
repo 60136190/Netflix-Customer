@@ -164,11 +164,12 @@
             android:id="@+id/btn_update"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
+            android:textAllCaps="false"
             android:layout_marginLeft="@dimen/_30sdp"
             android:layout_marginRight="@dimen/_30sdp"
             android:layout_marginBottom="@dimen/_10sdp"
             android:backgroundTint="@color/red"
-            android:text="LƯU THÔNG TIN"
+            android:text="Save information"
             app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
     <com.github.ybq.android.spinkit.SpinKitView

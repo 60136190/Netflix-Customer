@@ -99,9 +99,9 @@
 
                         <ImageView
                             android:id="@+id/img_logo_kid"
-                            android:layout_width="@dimen/_50sdp"
-                            android:layout_height="@dimen/_40sdp"
-                            android:layout_margin="@dimen/_10sdp"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_margin="@dimen/_5sdp"
                             android:visibility="gone"
                             android:src="@drawable/kid"
                             android:layout_gravity="bottom|right"/>

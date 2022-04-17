@@ -12,385 +12,49 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/ln_information"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:background="@drawable/border_item_more">
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/newhot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="Downloads"
+                android:textSize="@dimen/_20ssp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_60sdp">
+            <ImageView
+                android:id="@+id/share_screen"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:src="@drawable/cast"
+                app:layout_constraintBottom_toBottomOf="@+id/newhot"
+                app:layout_constraintRight_toLeftOf="@+id/cardview_img_user"
+                app:layout_constraintTop_toTopOf="@+id/newhot"
+                app:tint="@color/white" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardview_img_user"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/share_screen"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/share_screen">
+
+                <ImageView
                     android:id="@+id/img_user"
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_fullname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_16ssp"
-                    android:textStyle="bold"
-                    app:layout_constraintLeft_toRightOf="@+id/img_user"
-                    app:layout_constraintTop_toTopOf="@+id/img_user" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:text="Xem thông tin tài khoản"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_10ssp"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_user"
-                    app:layout_constraintLeft_toRightOf="@+id/img_user" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/border_item_more">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_50sdp">
-
-                <ImageView
-                    android:id="@+id/img_notification"
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:src="@drawable/notification"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:text="Thông báo"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_13ssp"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_notification"
-                    app:layout_constraintLeft_toRightOf="@+id/img_notification"
-                    app:layout_constraintTop_toTopOf="@+id/img_notification" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:background="@drawable/border_item_more">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_50sdp">
-
-                <ImageView
-                    android:id="@+id/img_community"
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:src="@drawable/community"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:text="Cộng đồng"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_13ssp"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_community"
-                    app:layout_constraintLeft_toRightOf="@+id/img_community"
-                    app:layout_constraintTop_toTopOf="@+id/img_community" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/border_item_more">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_50sdp">
-
-                <ImageView
-                    android:id="@+id/img_live"
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:src="@drawable/live"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:text="Sự kiện"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_13ssp"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_live"
-                    app:layout_constraintLeft_toRightOf="@+id/img_live"
-                    app:layout_constraintTop_toTopOf="@+id/img_live" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:background="@drawable/border_item_more">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_50sdp">
-
-                <ImageView
-                    android:id="@+id/img_library"
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:src="@drawable/library"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:text="Thư viện"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_13ssp"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_library"
-                    app:layout_constraintLeft_toRightOf="@+id/img_library"
-                    app:layout_constraintTop_toTopOf="@+id/img_library" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:orientation="vertical">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:background="@drawable/border_item_more_top">
-
-                <ImageView
-                    android:id="@+id/img_ball"
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:src="@drawable/ball"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:text="Thể thao"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_13ssp"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_ball"
-                    app:layout_constraintLeft_toRightOf="@+id/img_ball"
-                    app:layout_constraintTop_toTopOf="@+id/img_ball" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_60sdp"
-                android:background="@drawable/border_item_more_bottom">
-                <LinearLayout
-                    android:layout_width="@dimen/_100sdp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/_10sdp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:background="@drawable/border_blue"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="@dimen/_25sdp"
-                        android:layout_height="@dimen/_25sdp"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_calendar"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:text="Lịch đấu"
-                        android:layout_gravity="center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_13ssp"
-                        app:layout_constraintBottom_toBottomOf="@+id/img_ball"
-                        app:layout_constraintLeft_toRightOf="@+id/img_ball"
-                        app:layout_constraintTop_toTopOf="@+id/img_ball" />
-                </LinearLayout>
-
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:background="@drawable/border_item_more">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_50sdp">
-
-                <ImageView
-                    android:id="@+id/img_support"
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:src="@drawable/support"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:text="Hỗ trợ"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_13ssp"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_support"
-                    app:layout_constraintLeft_toRightOf="@+id/img_support"
-                    app:layout_constraintTop_toTopOf="@+id/img_support" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:background="@drawable/border_item_more">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_50sdp">
-
-                <ImageView
-                    android:id="@+id/img_introduce"
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:src="@drawable/introduce"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:text="Giới thiệu"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_13ssp"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_introduce"
-                    app:layout_constraintLeft_toRightOf="@+id/img_introduce"
-                    app:layout_constraintTop_toTopOf="@+id/img_introduce" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@drawable/border_item_more">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_50sdp">
-
-                <ImageView
-                    android:id="@+id/img_ad"
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:src="@drawable/ad"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:text="Quảng cáo"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_13ssp"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_ad"
-                    app:layout_constraintLeft_toRightOf="@+id/img_ad"
-                    app:layout_constraintTop_toTopOf="@+id/img_ad" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ln_logout"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_margin="@dimen/_10sdp"
-            android:gravity="center"
-            android:background="@drawable/border_item_more">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:text="ĐĂNG XUẤT"
-                    android:textColor="@color/red"
-                    android:textSize="@dimen/_16ssp"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_ad"
-                    app:layout_constraintLeft_toRightOf="@+id/img_ad"
-                    app:layout_constraintTop_toTopOf="@+id/img_ad" />
-
-        </LinearLayout>
-
+                    android:scaleType="fitXY" />
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </ScrollView>

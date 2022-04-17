@@ -85,7 +85,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/manager"
+        android:id="@+id/tv_edit_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Manage Profile"
@@ -103,9 +103,9 @@
         android:layout_marginRight="@dimen/_5sdp"
         android:src="@drawable/edit"
         app:tint="@color/gray_dot"
-        app:layout_constraintTop_toTopOf="@+id/manager"
-        app:layout_constraintBottom_toBottomOf="@+id/manager"
-        app:layout_constraintRight_toLeftOf="@+id/manager"/>
+        app:layout_constraintTop_toTopOf="@+id/tv_edit_profile"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_edit_profile"
+        app:layout_constraintRight_toLeftOf="@+id/tv_edit_profile"/>
 
     <LinearLayout
         android:id="@+id/ln_notifications"
@@ -116,7 +116,7 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:weightSum="10"
-        app:layout_constraintTop_toBottomOf="@+id/manager">
+        app:layout_constraintTop_toBottomOf="@+id/tv_edit_profile">
 
         <ImageView
             android:layout_width="0dp"

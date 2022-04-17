@@ -17,6 +17,7 @@
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/drawable/background_input.xml" value="0.19166666666666668" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/drawable/background_tv_show.xml" value="0.19166666666666668" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/drawable/border_background_10sdp.xml" value="0.19166666666666668" />
+        <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/drawable/border_background_2sdp.xml" value="0.14166666666666666" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/drawable/border_background_5sdp.xml" value="0.19166666666666668" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/drawable/border_category_a.xml" value="0.14666666666666667" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/drawable/border_category_b.xml" value="0.19166666666666668" />
@@ -32,6 +33,7 @@
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/drawable/circle_button.xml" value="0.1787037037037037" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/drawable/custom_color_bottom_nav.xml" value="0.19166666666666668" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/drawable/custom_thumb.xml" value="0.19166666666666668" />
+        <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/drawable/ic_add.xml" value="0.17962962962962964" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/drawable/ic_back.xml" value="0.19166666666666668" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/drawable/ic_back_black.xml" value="0.19166666666666668" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/drawable/ic_bell.xml" value="0.19166666666666668" />
@@ -110,15 +112,20 @@
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_sport.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_sport2.xml" value="0.16145833333333334" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_tab_categories.xml" value="0.14351851851851852" />
+        <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_tab_home.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_tab_movies.xml" value="0.14351851851851852" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_tab_tvshows.xml" value="0.14351851851851852" />
+        <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_top10.xml" value="0.17282051282051283" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_tv.xml" value="0.10666666666666667" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_watching.xml" value="0.16145833333333334" />
+        <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/item_coming_soon.xml" value="0.15925925925925927" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/item_comment.xml" value="0.17552083333333332" />
+        <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/item_everyone_watching.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/item_horizontal_film.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/item_list_favorite.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/item_search_film.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/item_series_film.xml" value="0.17552083333333332" />
+        <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/item_top_ten.xml" value="0.17282051282051283" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/item_vertical_film.xml" value="0.22" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/slider.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/menu/navigation.xml" value="0.17552083333333332" />

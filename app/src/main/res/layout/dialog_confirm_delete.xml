@@ -62,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_10sdp"
-            android:text="Delete"
+            android:text="Yup"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:backgroundTint="@color/red"
