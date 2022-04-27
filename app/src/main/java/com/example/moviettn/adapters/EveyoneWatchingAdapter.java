@@ -116,7 +116,6 @@ public class EveyoneWatchingAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     }
 
-
     @Override
     public int getItemCount() {
         if (mFilmList != null){

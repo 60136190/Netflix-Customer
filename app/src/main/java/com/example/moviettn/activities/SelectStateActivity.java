@@ -40,7 +40,7 @@ public class SelectStateActivity extends AppCompatActivity {
         imgAdult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UpdateStateUsertoAdult();
+                UpdateStateUsertoAdultorKid("1");
                 Intent intent = new Intent(SelectStateActivity.this, MainActivity.class);
                 startActivity(intent);
             }
@@ -49,7 +49,7 @@ public class SelectStateActivity extends AppCompatActivity {
         imgKid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UpdateStateUsertoKid();
+                UpdateStateUsertoAdultorKid("0");
                 CountDownTimer countDownTimer = new CountDownTimer(3500, 1000) {
                     @Override
                     public void onTick(long millisUntilFinished) {
@@ -77,8 +77,8 @@ public class SelectStateActivity extends AppCompatActivity {
         gifChangeState = findViewById(R.id.gif_change_state);
 
     }
-    private void UpdateStateUsertoAdult() {
-        updateStateUserRequest = new UpdateStateUserRequest("1");
+    private void UpdateStateUsertoAdultorKid(String number) {
+        updateStateUserRequest = new UpdateStateUserRequest(number);
         Call<UpdateStateUserResponse> updateStateAdult = ApiClient.getUserService().updateStateUser(
                 StoreUtil.get(SelectStateActivity.this, Contants.accessToken), updateStateUserRequest);
         updateStateAdult.enqueue(new Callback<UpdateStateUserResponse>() {
@@ -100,20 +100,4 @@ public class SelectStateActivity extends AppCompatActivity {
         });
     }
 
-    private void UpdateStateUsertoKid() {
-        updateStateUserRequest = new UpdateStateUserRequest("0");
-        Call<UpdateStateUserResponse> updateStateKid = ApiClient.getUserService().updateStateUser(
-                StoreUtil.get(SelectStateActivity.this, Contants.accessToken), updateStateUserRequest);
-        updateStateKid.enqueue(new Callback<UpdateStateUserResponse>() {
-            @Override
-            public void onResponse(Call<UpdateStateUserResponse> call, Response<UpdateStateUserResponse> response) {
-
-            }
-
-            @Override
-            public void onFailure(Call<UpdateStateUserResponse> call, Throwable t) {
-
-            }
-        });
-    }
 }

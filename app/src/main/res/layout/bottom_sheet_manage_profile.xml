@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/black">
 
-
         <ImageView
             android:id="@+id/img_close"
             android:layout_width="@dimen/_20sdp"
@@ -44,13 +43,13 @@
                     android:id="@+id/img_adults"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/teal_700"
+                    android:src="@drawable/user"
                     android:scaleType="fitXY" />
             </androidx.cardview.widget.CardView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Thainam"
+                android:text="Adult"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_13ssp"/>
         </LinearLayout>
@@ -69,16 +68,16 @@
                 app:layout_constraintTop_toTopOf="@+id/share_screen">
 
                 <ImageView
-                    android:id="@+id/img_children"
+                    android:id="@+id/img_kid"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/white"
+                    android:src="@drawable/logokid"
                     android:scaleType="fitXY" />
             </androidx.cardview.widget.CardView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Thainam"
+                android:text="Kid"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_13ssp"/>
         </LinearLayout>

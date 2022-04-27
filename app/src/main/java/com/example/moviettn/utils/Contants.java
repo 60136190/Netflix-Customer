@@ -9,5 +9,6 @@ public class Contants {
     public static final String public_id = "public_id";
     public static final String url = "url";
     public static final String tokenid = "tokenid";
-
+    public static final String adult = "adult";
 }
+

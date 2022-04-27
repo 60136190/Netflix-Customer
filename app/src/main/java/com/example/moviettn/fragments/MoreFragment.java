@@ -71,7 +71,7 @@ public class MoreFragment extends Fragment {
                 bottomSheetDialog.show();
                 ImageView img_close = viewdialog.findViewById(R.id.img_close);
                 ImageView img_Adults = viewdialog.findViewById(R.id.img_adults);
-                ImageView img_Children = viewdialog.findViewById(R.id.img_children);
+                ImageView img_Children = viewdialog.findViewById(R.id.img_kid);
                 TextView tv_Logout = viewdialog.findViewById(R.id.tv_logout);
                 TextView tv_edit_profile = viewdialog.findViewById(R.id.tv_edit_profile);
                 LinearLayout ln_MyList = viewdialog.findViewById(R.id.ln_my_list);

@@ -1,6 +1,5 @@
 package com.example.moviettn.activities;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,6 +46,7 @@ public class DetailFilmActivity extends AppCompatActivity {
     private EditText edtComment;
     private ImageView imgUser;
     private ImageView imgFilm;
+    private ImageView imgPlay;
     private CheckBox checkFavorite;
     private TextView tvDirector;
     private TextView tvNameOfFilm;
@@ -61,7 +61,6 @@ public class DetailFilmActivity extends AppCompatActivity {
     private ListCommentFilmAdapter listCommentFilmAdapter;
     private SeriesFilmAdapter seriesFilmAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
-
 
 
     @Override
@@ -83,7 +82,6 @@ public class DetailFilmActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         tvNameOfFilm.setText(response.body().getData().get(0).getTitle());
                         tvDescription.setText(response.body().getData().get(0).getDescription());
-                        String urlVideoFilm = response.body().getData().get(0).getSeriesFilm().get(0).getUrlVideo();
                         for (int i = 0; i < response.body().getData().get(0).getDirector().size(); i++) {
                             tvDirector.setText(response.body().getData().get(0).getDirector().get(i).getName());
                         }
@@ -213,7 +211,7 @@ public class DetailFilmActivity extends AppCompatActivity {
             });
 
 
-             //get list comment
+            //get list comment
             Call<CommentResponse> listFavoriteFilmResponseCall = ApiClient.getFilmService().getAllCommentFollowFilm(
                     StoreUtil.get(DetailFilmActivity.this, Contants.accessToken), idFilm);
             listFavoriteFilmResponseCall.enqueue(new Callback<CommentResponse>() {
@@ -242,7 +240,15 @@ public class DetailFilmActivity extends AppCompatActivity {
                     seriesFilmAdapter = new SeriesFilmAdapter(DetailFilmActivity.this, response.body().getData().get(0).getSeriesFilm());
                     rcvSeriesFilm.setAdapter(seriesFilmAdapter);
                     seriesFilmAdapter.notifyDataSetChanged();
-
+                    String strName = response.body().getData().get(0).getSeriesFilm().get(0).getUrlVideo();
+                    imgPlay.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(DetailFilmActivity.this, DetailVideoActivity.class);
+                            i.putExtra("video", strName);
+                            startActivity(i);
+                        }
+                    });
                 }
 
                 @Override
@@ -320,6 +326,7 @@ public class DetailFilmActivity extends AppCompatActivity {
         ratingBar = findViewById(R.id.rating_bar);
         imgUser = findViewById(R.id.img_user);
         imgSendComment = findViewById(R.id.img_send_comment);
+        imgPlay = findViewById(R.id.img_play);
         edtComment = findViewById(R.id.edt_comment);
         recyclerViewComment = findViewById(R.id.rcv_comment);
         rcvSeriesFilm = findViewById(R.id.rcv_series_film);

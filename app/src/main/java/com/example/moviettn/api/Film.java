@@ -19,6 +19,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface Film {
+
     // get film follow category
     @GET("api/film/find/category/62049dda656d8c7511aaab77")
     Call<FilmResponse> getFilmFollowCategory(@Header("Authorization") String authorization);
@@ -26,6 +27,10 @@ public interface Film {
     // get film follow category
     @GET("api/film/all")
     Call<FilmResponse> getAllFilm(@Header("Authorization") String authorization);
+
+    // get film follow category
+    @GET("api/film/kid")
+    Call<FilmResponse> getFilmKid(@Header("Authorization") String authorization);
 
     // get detail film
     @GET("api/film/detail/{id}")

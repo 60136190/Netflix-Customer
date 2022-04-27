@@ -79,6 +79,26 @@ public class SearchFragment extends Fragment {
     }
 
     private void getData() {
+        String adult = StoreUtil.get(getContext(), Contants.adult);
+        String a ="1";
+        if(adult.equals(a)) {
+          getFilmAdult();
+        }else {
+            getFilmKid();
+        }
+    }
+
+    private void filter(String text) {
+        List<Film> filteredList = new ArrayList<>();
+        for (Film item : list) {
+            if (item.getTitle().toUpperCase().contains(text.toUpperCase())) {
+                filteredList.add(item);
+            }
+        }
+        searchFilmAdapter.filterList(filteredList);
+    }
+
+    private void getFilmAdult(){
         Call<FilmResponse> responseDTOCall = ApiClient.getFilmService().getAllFilm(
                 StoreUtil.get(getContext(), Contants.accessToken));
         responseDTOCall.enqueue(new Callback<FilmResponse>() {
@@ -95,15 +115,21 @@ public class SearchFragment extends Fragment {
         });
     }
 
-    private void filter(String text) {
-        List<Film> filteredList = new ArrayList<>();
-        for (Film item : list) {
-            if (item.getTitle().toUpperCase().contains(text.toUpperCase())) {
-                filteredList.add(item);
+    private void getFilmKid(){
+        Call<FilmResponse> responseDTOCall = ApiClient.getFilmService().getFilmKid(
+                StoreUtil.get(getContext(), Contants.accessToken));
+        responseDTOCall.enqueue(new Callback<FilmResponse>() {
+            @Override
+            public void onResponse(Call<FilmResponse> call, Response<FilmResponse> response) {
+                list.addAll(response.body().getData());
+                searchFilmAdapter.notifyDataSetChanged();
             }
-        }
-        searchFilmAdapter.filterList(filteredList);
-    }
 
+            @Override
+            public void onFailure(Call<FilmResponse> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
 
 }
