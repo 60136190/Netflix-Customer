@@ -226,7 +226,6 @@ public class DetailFilmActivity extends AppCompatActivity {
                 }
             });
 
-
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DetailFilmActivity.this);
             linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             recyclerViewComment.setLayoutManager(linearLayoutManager);

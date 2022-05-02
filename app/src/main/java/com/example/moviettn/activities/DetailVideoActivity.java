@@ -207,8 +207,11 @@ public class DetailVideoActivity extends AppCompatActivity implements View.OnTou
 
         Intent iin = getIntent();
         Bundle b = iin.getExtras();
-        String path = (String) b.get("video");
 
+        String path = (String) b.get("video");
+//        int episode = (int) b.get("episode");
+//
+//        title.setText(String.valueOf("Tập " + episode));
         if (path!=null){
             videoView.setVideoPath(path);
             videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {

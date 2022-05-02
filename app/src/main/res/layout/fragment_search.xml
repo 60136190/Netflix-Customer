@@ -9,14 +9,14 @@
     <EditText
         android:id="@+id/edt_search"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_30sdp"
+        android:layout_height="@dimen/_35sdp"
         android:layout_margin="@dimen/_10sdp"
         android:layout_weight="9"
         android:backgroundTint="@color/gray_search"
         android:background="@drawable/border_background_5sdp"
         android:drawableEnd="@drawable/ic_search"
         android:hint="@string/edittext_hint"
-        android:textColorHint="@color/gray_dot"
+        android:textColorHint="@color/white"
         android:textSize="@dimen/_10ssp"
         android:textColor="@color/white"
         android:padding="@dimen/_10sdp"
@@ -29,6 +29,5 @@
         android:layout_margin="@dimen/_5sdp"
         app:layout_constraintTop_toBottomOf="@+id/edt_search"
         app:layout_constraintBottom_toBottomOf="parent"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

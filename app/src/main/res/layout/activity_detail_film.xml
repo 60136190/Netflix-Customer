@@ -29,6 +29,14 @@
                 android:layout_gravity="center"
                 android:src="@drawable/ic_play"
                 app:tint="@color/red" />
+            <ImageView
+                android:id="@+id/img_buy"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:src="@drawable/shoppingcart"
+                app:tint="@color/red" />
         </FrameLayout>
 
 

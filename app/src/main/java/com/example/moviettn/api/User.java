@@ -2,6 +2,7 @@ package com.example.moviettn.api;
 
 import com.example.moviettn.model.request.ChangePasswordRequest;
 import com.example.moviettn.model.request.DeleteImageRequest;
+import com.example.moviettn.model.request.FeedBack;
 import com.example.moviettn.model.request.ForgetPasswordRequest;
 import com.example.moviettn.model.request.LoginGoogleRequest;
 import com.example.moviettn.model.request.LoginRequest;
@@ -81,5 +82,7 @@ public interface User {
     @POST("api/film/selectForAdultOrChild")
     Call<UpdateStateUserResponse> updateStateUser(@Header("Authorization") String authorization, @Body UpdateStateUserRequest updateStateUserRequest);
 
-
+    // send feedback
+    @POST("api/feedback/send")
+    Call<FeedBack> sendFeedback(@Header("Authorization") String authorization, @Body FeedBack feedBack);
 }

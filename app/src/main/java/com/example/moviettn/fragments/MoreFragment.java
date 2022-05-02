@@ -26,6 +26,7 @@ import com.example.moviettn.R;
 import com.example.moviettn.activities.ChangePasswordActivity;
 import com.example.moviettn.activities.InformationUserActivity;
 import com.example.moviettn.activities.ListFavotireActivity;
+import com.example.moviettn.activities.SendFeedBackActivity;
 import com.example.moviettn.activities.UpdateInformationUserActivity;
 import com.example.moviettn.api.ApiClient;
 import com.example.moviettn.model.response.ProfileResponse;
@@ -48,9 +49,8 @@ import retrofit2.Response;
 public class MoreFragment extends Fragment {
 
     private ImageView imgUser;
+    private TextView tvSendFeedBack;
     private View view;
-    GoogleSignInClient mGoogleSignInClient;
-    private CardView cardview_img_user;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,66 +58,12 @@ public class MoreFragment extends Fragment {
         view =  inflater.inflate(R.layout.fragment_more, container, false);
         getProfile();
         initUi();
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
 
-        cardview_img_user.setOnClickListener(new View.OnClickListener() {
+        tvSendFeedBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                View viewdialog = getLayoutInflater().inflate(R.layout.bottom_sheet_manage_profile, null);
-                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getContext());
-                bottomSheetDialog.setContentView(viewdialog);
-                bottomSheetDialog.show();
-                ImageView img_close = viewdialog.findViewById(R.id.img_close);
-                ImageView img_Adults = viewdialog.findViewById(R.id.img_adults);
-                ImageView img_Children = viewdialog.findViewById(R.id.img_kid);
-                TextView tv_Logout = viewdialog.findViewById(R.id.tv_logout);
-                TextView tv_edit_profile = viewdialog.findViewById(R.id.tv_edit_profile);
-                LinearLayout ln_MyList = viewdialog.findViewById(R.id.ln_my_list);
-                LinearLayout ln_Account = viewdialog.findViewById(R.id.ln_account);
-                LinearLayout ln_Setting = viewdialog.findViewById(R.id.ln_setting);
-                img_close.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        bottomSheetDialog.dismiss();
-                    }
-                });
-                tv_Logout.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        logout();
-                    }
-                });
-                ln_MyList.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getContext(), ListFavotireActivity.class);
-                        startActivity(intent);
-                    }
-                });
-                ln_Account.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getContext(), InformationUserActivity.class);
-                        startActivity(intent);
-                    }
-                });
-                ln_Setting.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getContext(), ChangePasswordActivity.class);
-                        startActivity(intent);
-                    }
-                });
-                tv_edit_profile.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getContext(), UpdateInformationUserActivity.class);
-                        startActivity(intent);
-                    }
-                });
-
+                Intent intent = new Intent(getContext(), SendFeedBackActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -125,8 +71,8 @@ public class MoreFragment extends Fragment {
     }
 
     private void initUi() {
-        cardview_img_user = view.findViewById(R.id.cardview_img_user);
         imgUser = view.findViewById(R.id.img_user);
+        tvSendFeedBack = view.findViewById(R.id.tv_send_feedback);
     }
 
     public void getProfile() {
@@ -137,13 +83,18 @@ public class MoreFragment extends Fragment {
             public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
                 if (response.isSuccessful()) {
                     String im = response.body().getUser().getImage().getUrl();
-                    if (im.isEmpty()) {
-                        imgUser.setImageResource(R.drawable.backgroundslider);
-                    } else {
+                    String adult = response.body().getUser().getAdult();
+                    StoreUtil.save(getContext(), Contants.adult, adult);
+                    String a="1";
+
+                    if (adult.equals(a)) {
                         Glide.with(getContext())
                                 .load(im)
                                 .into(imgUser);
+                    } else {
+                        imgUser.setImageResource(R.drawable.logokid);
                     }
+
                 }
             }
 
@@ -153,96 +104,5 @@ public class MoreFragment extends Fragment {
             }
         });
     }
-    public void logout() {
-        Dialog dialog = new Dialog(getContext());
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_confirm_delete);
 
-        Window window = dialog.getWindow();
-        if (window == null) {
-            return;
-        }
-
-        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        WindowManager.LayoutParams windowAtribute = window.getAttributes();
-        window.setAttributes(windowAtribute);
-
-        ProgressBar progressBar = dialog.findViewById(R.id.spin_kit);
-        Button btnCancel = dialog.findViewById(R.id.btn_cancel);
-        Button btnLogout = dialog.findViewById(R.id.btn_confirm_delete);
-
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        // show dialog
-        dialog.show();
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Call<ResponseDTO> loginResponeCall = ApiClient.getUserService().logout(
-                        StoreUtil.get(getContext(), Contants.accessToken));
-                loginResponeCall.enqueue(new Callback<ResponseDTO>() {
-                    @Override
-                    public void onResponse(Call<ResponseDTO> call, retrofit2.Response<ResponseDTO> response) {
-                        if (response.isSuccessful()) {
-                            // delete access token
-                            SharedPreferences preferences = getContext().getSharedPreferences("MySharedPref", 0);
-                            preferences.edit().remove("Authorization").commit();
-
-                            // delete google in shared preference
-                            SharedPreferences google = getContext().getSharedPreferences("com.google.android.gms.signin", 0);
-                            google.edit().clear().commit();
-
-                            onStart();
-
-                            // progress bar
-                            Circle foldingCube = new Circle();
-                            progressBar.setIndeterminateDrawable(foldingCube);
-                            progressBar.setVisibility(View.VISIBLE);
-
-                            CountDownTimer countDownTimer = new CountDownTimer(5000, 1000) {
-                                @Override
-                                public void onTick(long millisUntilFinished) {
-                                    int current = progressBar.getProgress();
-                                    if (current >= progressBar.getMax()) {
-                                        current = 0;
-                                    }
-                                    progressBar.setProgress(current + 10);
-                                }
-
-                                @Override
-                                public void onFinish() {
-                                    // logout google
-                                    signOut();
-                                    getActivity().finish();
-                                }
-
-                            };
-                            countDownTimer.start();
-                        }
-                    }
-
-                    //
-                    @Override
-                    public void onFailure(Call<ResponseDTO> call, Throwable t) {
-
-                    }
-                });
-            }
-        });
-    }
-
-    private void signOut() {
-        mGoogleSignInClient.signOut()
-                .addOnCompleteListener((Executor) this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                    }
-                });
-    }
 }

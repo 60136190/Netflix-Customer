@@ -121,6 +121,16 @@
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/spin_kit"
+        style="@style/SpinKitView.Small.Circle"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:max="150"
+        android:progress="10"
+        android:visibility="invisible"
+        android:layout_gravity="center"
+        app:SpinKit_Color="@color/white" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gif_change_state"
@@ -129,4 +139,6 @@
         android:layout_marginTop="9dp"
         android:visibility="gone"
         android:src="@drawable/changestate" />
+
+
 </FrameLayout>

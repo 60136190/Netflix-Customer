@@ -55,6 +55,7 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.8.1'
 
+    // circle image
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     // căn chỉnh kích thước

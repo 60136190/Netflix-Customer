@@ -59,7 +59,7 @@ import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
 
-//    private ViewFlipper viewFlipper;
+//  private ViewFlipper viewFlipper;
     private ImageView imgUser;
     private ImageView imgLogoKid;
     private CardView cardview_img_user;
@@ -87,6 +87,7 @@ public class HomeFragment extends Fragment {
         view.clearAnimation();
 
         tableLayout.setupWithViewPager(viewPager);
+
 //        int images[] = {R.drawable.vpa, R.drawable.vpb, R.drawable.vpc,
 //                R.drawable.vpd, R.drawable.vpe, R.drawable.vpf};
 //

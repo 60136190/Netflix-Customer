@@ -1,60 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_more"
+    android:background="@color/black"
     tools:context=".fragments.MoreFragment">
+
+    <TextView
+        android:id="@+id/download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:text="Downloads"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_20ssp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/share_screen"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_gravity="center"
+        android:layout_marginRight="@dimen/_15sdp"
+        android:src="@drawable/cast"
+        app:layout_constraintBottom_toBottomOf="@+id/download"
+        app:layout_constraintRight_toLeftOf="@+id/cardview_img_user"
+        app:layout_constraintTop_toTopOf="@+id/download"
+        app:tint="@color/white" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview_img_user"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/share_screen"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/share_screen">
+
+        <ImageView
+            android:id="@+id/img_user"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/img_setting"
+        android:layout_width="@dimen/_18sdp"
+        android:layout_height="@dimen/_18sdp"
+        android:layout_margin="@dimen/_10sdp"
+        android:src="@drawable/ic_send"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/download"
+        app:tint="@color/white" />
+
+    <TextView
+        android:id="@+id/tv_send_feedback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:text="Feedback"
+        android:textSize="@dimen/_10ssp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="@+id/img_setting"
+        app:layout_constraintBottom_toBottomOf="@+id/img_setting"
+        app:layout_constraintLeft_toRightOf="@+id/img_setting"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/img_setting"
+        app:layout_constraintBottom_toTopOf="@+id/img_center">
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/newhot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10sdp"
-                android:text="Downloads"
-                android:textSize="@dimen/_20ssp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-
-            <ImageView
-                android:id="@+id/share_screen"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_gravity="center"
-                android:layout_marginRight="@dimen/_15sdp"
-                android:src="@drawable/cast"
-                app:layout_constraintBottom_toBottomOf="@+id/newhot"
-                app:layout_constraintRight_toLeftOf="@+id/cardview_img_user"
-                app:layout_constraintTop_toTopOf="@+id/newhot"
-                app:tint="@color/white" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardview_img_user"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_marginRight="@dimen/_10sdp"
-                app:cardCornerRadius="@dimen/_5sdp"
-                app:layout_constraintBottom_toBottomOf="@+id/share_screen"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/share_screen">
-
-                <ImageView
-                    android:id="@+id/img_user"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY" />
-            </androidx.cardview.widget.CardView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Introducing Buy for You"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintBottom_toTopOf="@+id/img_center"
+            app:layout_constraintTop_toBottomOf="@+id/img_setting"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:gravity="center"
+            android:text="@string/introducing"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintBottom_toTopOf="@+id/img_center"
+            app:layout_constraintTop_toBottomOf="@+id/img_setting"/>
     </LinearLayout>
-</ScrollView>
+
+
+
+
+    <ImageView
+        android:id="@+id/img_center"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:src="@drawable/imgdownload"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_setup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/blue"
+        android:text="Set Up"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        app:layout_constraintTop_toBottomOf="@+id/img_center"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:backgroundTint="@color/white"
+        android:text="See What You Can Download"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:layout_marginRight="@dimen/_40sdp"
+        android:layout_marginLeft="@dimen/_40sdp"
+        app:layout_constraintTop_toBottomOf="@+id/btn_setup"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

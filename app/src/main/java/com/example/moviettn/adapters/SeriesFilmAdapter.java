@@ -46,6 +46,7 @@ public class SeriesFilmAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         SeriesFilm detailFilm = mDetailFilms.get(position);
         String imgFilm = detailFilm.getUrlImage();
         String urlVideo = detailFilm.getUrlVideo();
+        int episode = detailFilm.getEpisode();
         ((ItemViewHolder) holder).tvSeries.setText(String.valueOf(detailFilm.getEpisode()));
         Picasso.with(mContext)
                 .load(imgFilm).error(R.drawable.error).fit().centerInside().into(((ItemViewHolder) holder).imgFilm);
@@ -54,8 +55,8 @@ public class SeriesFilmAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(mContext, DetailVideoActivity.class);
-                String strName = urlVideo;
-                i.putExtra("video", strName);
+                i.putExtra("video", urlVideo);
+                i.putExtra("episode", episode);
                 mContext.startActivity(i);
             }
         });
