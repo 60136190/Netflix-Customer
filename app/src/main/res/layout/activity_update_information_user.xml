@@ -168,7 +168,7 @@
             android:layout_marginLeft="@dimen/_30sdp"
             android:layout_marginRight="@dimen/_30sdp"
             android:layout_marginBottom="@dimen/_10sdp"
-            android:backgroundTint="@color/red"
+            android:backgroundTint="@color/button"
             android:text="Save information"
             app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

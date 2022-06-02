@@ -2,12 +2,15 @@ package com.example.moviettn.api;
 
 import com.example.moviettn.model.request.CommentRequest;
 import com.example.moviettn.model.request.RatingRequest;
+import com.example.moviettn.model.response.CategoriesResponse;
 import com.example.moviettn.model.response.CommentResponse;
 import com.example.moviettn.model.response.DetailFilmResponse;
+import com.example.moviettn.model.response.DirectorResponse;
 import com.example.moviettn.model.response.FilmResponse;
 import com.example.moviettn.model.response.ListFavoriteFilmResponse;
 import com.example.moviettn.model.response.ResponseDTO;
 import com.example.moviettn.model.response.SeriesFilmResponse;
+import com.example.moviettn.model.test.ResponseTest;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -20,13 +23,29 @@ import retrofit2.http.Path;
 
 public interface Film {
 
-    // get film follow category
-    @GET("api/film/find/category/62049dda656d8c7511aaab77")
-    Call<FilmResponse> getFilmFollowCategory(@Header("Authorization") String authorization);
+    // get all category
+    @GET("api/category/all")
+    Call<CategoriesResponse> getAllCategory(@Header("Authorization") String authorization);
 
     // get film follow category
+    @GET("api/film/find/category/{id}")
+    Call<FilmResponse> getFilmFollowCategory(@Header("Authorization") String authorization, @Path("id") String idCategory);
+
+    // get all director
+    @GET("api/director/all")
+    Call<DirectorResponse> getAllDirector(@Header("Authorization") String authorization);
+
+    // get film follow director
+    @GET("api/film/find/director/{id}")
+    Call<FilmResponse> getFilmFollowDirector(@Header("Authorization") String authorization, @Path("id") String idDirector);
+
+    // get all film
     @GET("api/film/all")
     Call<FilmResponse> getAllFilm(@Header("Authorization") String authorization);
+
+    // get all film /////////////////////////// TEST
+    @GET("api/film/all")
+    Call<ResponseTest> getAllFilmTest(@Header("Authorization") String authorization);
 
     // get film follow category
     @GET("api/film/kid")
@@ -44,10 +63,6 @@ public interface Film {
     @POST("api/favourite/add/{id}")
     Call<ResponseDTO> addFavoriteFilm(@Header("Authorization") String authorization,@Path("id") String idFilm );
 
-    // delete favorite film
-    @DELETE("api/favourite/delete/{id}")
-    Call<ResponseDTO> deleteFavoriteFilm(@Header("Authorization") String authorization,@Path("id") String idFilm );
-
     // get list favorite film
     @GET("api/favourite/getList")
     Call<ListFavoriteFilmResponse> getListFavoriteFilm(@Header("Authorization") String authorization);
@@ -64,11 +79,9 @@ public interface Film {
     @GET("api/comment/get/{id}")
     Call<CommentResponse> getAllCommentFollowFilm(@Header("Authorization") String authorization, @Path("id") String idFilm);
 
-
     // update comment film
     @PATCH("api/comment/update/{id}")
     Call<ResponseDTO> editComment(@Header("Authorization") String authorization, @Path("id") String idComment, @Body CommentRequest commentRequest);
-
 
     // update comment film
     @DELETE("api/comment/delete/{id}")

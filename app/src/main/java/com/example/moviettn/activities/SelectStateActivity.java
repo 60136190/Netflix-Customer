@@ -78,6 +78,7 @@ public class SelectStateActivity extends AppCompatActivity {
 
     }
     private void UpdateStateUsertoAdultorKid(String number) {
+        StoreUtil.save(SelectStateActivity.this, Contants.adult, number);
         updateStateUserRequest = new UpdateStateUserRequest(number);
         Call<UpdateStateUserResponse> updateStateAdult = ApiClient.getUserService().updateStateUser(
                 StoreUtil.get(SelectStateActivity.this, Contants.accessToken), updateStateUserRequest);

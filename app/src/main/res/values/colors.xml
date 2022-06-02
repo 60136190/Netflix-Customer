@@ -14,6 +14,7 @@
     <color name="gray">#f7f7f7</color>
     <color name="text_gray">#B9B8B8</color>
     <color name="blue">#0670eb</color>
+    <color name="button">#0670eb</color>
     <color name="dark_gray">#2e2e2e</color>
     <color name="background_more">#121212</color>
     <color name="yellow">#FAC252</color>

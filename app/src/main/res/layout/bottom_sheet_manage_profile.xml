@@ -194,7 +194,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="8"
-            android:text="App Settings"
+            android:text="Change password"
             android:textSize="@dimen/_12ssp"
             android:textColor="@color/text_gray"/>
         <ImageView

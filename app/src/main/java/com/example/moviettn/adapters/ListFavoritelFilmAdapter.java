@@ -21,7 +21,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class ListFavoritelFilmAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class ListFavoritelFilmAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context mContext;
     List<Favorite> mFavoriteList;
@@ -35,35 +35,38 @@ public class ListFavoritelFilmAdapter extends RecyclerView.Adapter<RecyclerView.
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_list_favorite,parent,false);
+                .inflate(R.layout.item_list_favorite, parent, false);
         return new ItemViewHolder(view);
     }
 
     @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Favorite favorite = mFavoriteList.get(position);
-        String imgFilm = favorite.getFilm().getImageFilm().getUrl();
+        if (favorite.getFilm() == null) {
 
-        Picasso.with(mContext)
-                .load(imgFilm).error(R.drawable.backgroundslider).fit().centerInside().into(((ItemViewHolder) holder).itemImage);
+        } else {
+            String imgFilm = favorite.getFilm().getImageFilm().getUrl();
+            Picasso.with(mContext)
+                    .load(imgFilm).error(R.drawable.backgroundslider).fit().centerInside().into(((ItemViewHolder) holder).itemImage);
 
-        ((ItemViewHolder) holder).itemImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(mContext, DetailFilmActivity.class);
-                String strName = favorite.getFilm().getId();
-                i.putExtra("Id_film", strName);
-                mContext.startActivity(i);
+            ((ItemViewHolder) holder).itemImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(mContext, DetailFilmActivity.class);
+                    String strName = favorite.getFilm().getId();
+                    i.putExtra("Id_film", strName);
+                    mContext.startActivity(i);
 
-            }
-        });
+                }
+            });
 
+        }
     }
 
 
     @Override
     public int getItemCount() {
-        if (mFavoriteList != null){
+        if (mFavoriteList != null) {
             return mFavoriteList.size();
         }
         return 0;
@@ -72,7 +75,8 @@ public class ListFavoritelFilmAdapter extends RecyclerView.Adapter<RecyclerView.
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
         public ImageView itemImage;
-        public ItemViewHolder( View itemView) {
+
+        public ItemViewHolder(View itemView) {
             super(itemView);
             itemImage = itemView.findViewById(R.id.img_film);
         }

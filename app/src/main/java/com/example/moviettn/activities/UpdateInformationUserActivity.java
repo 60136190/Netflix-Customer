@@ -258,11 +258,14 @@ public class UpdateInformationUserActivity extends AppCompatActivity {
                             .load(im)
                             .into(imgInfo);
                 }
-                if (response.body().getUser().getSex() == 1) {
+                if(response.body().getUser().getSex() == null){
+
+                }else if (response.body().getUser().getSex() == 1) {
                     rdbMale.setChecked(true);
                 } else {
                     rdbFemale.setChecked(true);
                 }
+
 
             }
 

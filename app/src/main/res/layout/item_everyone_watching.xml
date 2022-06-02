@@ -43,24 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/card_img_film"
         app:layout_constraintLeft_toLeftOf="parent"/>
 
-    <com.steelkiwi.library.SlidingSquareLoaderView
-        android:id="@+id/progress_item_add_list"
-        android:layout_width="@dimen/_50sdp"
-        android:layout_height="@dimen/_30sdp"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:layout_gravity="center"
-        android:visibility="invisible"
-        android:background="@color/black"
-        android:backgroundTint="@color/black"
-        app:sslv_corner_radius="@dimen/_5sdp"
-        app:sslv_margin="@dimen/_3sdp"
-        app:sslv_end_gradient_color="@color/end_gradient_color"
-        app:sslv_start_gradient_color="@color/start_gradient_color"
-        app:sslv_background_color="@color/background"
-        app:sslv_square_size="@dimen/square_size"
-        app:layout_constraintTop_toBottomOf="@+id/card_img_film"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+
     <ImageView
         android:id="@+id/img_my_list"
         android:layout_width="@dimen/_18sdp"
@@ -156,7 +139,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_3sdp"
-        android:text="Twists &amp; Turns * Good vs. Evil"
         android:textSize="@dimen/_9ssp"
         android:textColor="@color/white"
         app:layout_constraintLeft_toLeftOf="@id/tv_storyline"

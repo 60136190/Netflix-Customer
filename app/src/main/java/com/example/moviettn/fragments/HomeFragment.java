@@ -317,6 +317,7 @@ public class HomeFragment extends Fragment {
                             // delete access token
                             SharedPreferences preferences = getContext().getSharedPreferences("MySharedPref", 0);
                             preferences.edit().remove("Authorization").commit();
+                            preferences.edit().remove(Contants.adult).commit();
 
                             // delete google in shared preference
                             SharedPreferences google = getContext().getSharedPreferences("com.google.android.gms.signin", 0);
@@ -342,6 +343,7 @@ public class HomeFragment extends Fragment {
                                 @Override
                                 public void onFinish() {
                                     // logout google
+                                    Log.i("dodo", "onFinish: ");
                                     signOut();
                                     getActivity().finish();
                                 }

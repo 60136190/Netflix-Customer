@@ -21,7 +21,7 @@ import com.example.moviettn.model.response.ResponseDTO;
 import com.example.moviettn.utils.Contants;
 import com.example.moviettn.utils.StoreUtil;
 import com.squareup.picasso.Picasso;
-import com.steelkiwi.library.SlidingSquareLoaderView;
+//import com.steelkiwi.library.SlidingSquareLoaderView;
 
 import java.util.List;
 
@@ -66,12 +66,12 @@ public class EveyoneWatchingAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                             CountDownTimer countDownTimer = new CountDownTimer(3000, 1000) {
                                 @Override
                                 public void onTick(long millisUntilFinished) {
-                                    ((ItemViewHolder) holder).slidingSquareLoaderView.show();
+//                                    ((ItemViewHolder) holder).slidingSquareLoaderView.show();
                                 }
 
                                 @Override
                                 public void onFinish() {
-                                    ((ItemViewHolder) holder).slidingSquareLoaderView.setVisibility(View.INVISIBLE);
+//                                    ((ItemViewHolder) holder).slidingSquareLoaderView.setVisibility(View.INVISIBLE);
 
                                 }
 
@@ -96,20 +96,23 @@ public class EveyoneWatchingAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             }
         });
 
-        String delim = " •";
-        int i = 0;
-        StringBuilder str = new StringBuilder();
-        while ( i < film.getDirector().size() - 1)
-        {
+        if(film.getDirector().isEmpty()){
+            ((ItemViewHolder) holder).itemDirectors.setText("");
+        }else {
+            String delim = " •";
+            int i = 0;
+            StringBuilder str = new StringBuilder();
+            while (i < film.getDirector().size()-1) {
+                str.append(film.getDirector().get(i).getName());
+                str.append(delim);
+                i++;
+            }
             str.append(film.getDirector().get(i).getName());
-            str.append(delim);
-            i++;
+            String directors = str.toString();
+
+
+            ((ItemViewHolder) holder).itemDirectors.setText(directors);
         }
-        str.append(film.getDirector().get(i).getName());
-        String directors = str.toString();
-
-
-        ((ItemViewHolder) holder).itemDirectors.setText(directors);
 
         Picasso.with(mContext)
                 .load(imageUrl).error(R.drawable.backgroundslider).fit().centerInside().into(((ItemViewHolder) holder).itemBanner);
@@ -135,7 +138,7 @@ public class EveyoneWatchingAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         private TextView itemStoryLine;
         private TextView itemTitle;
         private TextView itemDirectors;
-        private SlidingSquareLoaderView slidingSquareLoaderView;
+//        private SlidingSquareLoaderView slidingSquareLoaderView;
 
         public ItemViewHolder( View itemView) {
             super(itemView);
@@ -148,7 +151,7 @@ public class EveyoneWatchingAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             itemDirectors = itemView.findViewById(R.id.tv_directors);
             itemSeriesFilm = itemView.findViewById(R.id.tv_series_film);
             itemLogo = itemView.findViewById(R.id.img_logo_netflix);
-            slidingSquareLoaderView = itemView.findViewById(R.id.progress_item_add_list);
+//            slidingSquareLoaderView = itemView.findViewById(R.id.progress_item_add_list);
         }
     }
 

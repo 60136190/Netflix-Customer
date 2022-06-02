@@ -14,6 +14,8 @@ import com.example.moviettn.R;
 import com.example.moviettn.adapters.VerticalFilmAdapter;
 import com.example.moviettn.api.ApiClient;
 import com.example.moviettn.model.response.FilmResponse;
+import com.example.moviettn.model.test.ResponseTest;
+import com.example.moviettn.model.test.TestAdapter;
 import com.example.moviettn.utils.Contants;
 import com.example.moviettn.utils.StoreUtil;
 
@@ -23,10 +25,8 @@ import retrofit2.Response;
 
 
 public class TabTvShowsFragment extends Fragment {
-    private RecyclerView rcvPersonal;
-    private RecyclerView rcvTrending;
-    private RecyclerView rcvPeriodPieces;
-    private VerticalFilmAdapter verticalFilmAdapter;
+    RecyclerView rcvTest;
+    TestAdapter testAdapter;
     private View view;
 
     @Override
@@ -35,57 +35,33 @@ public class TabTvShowsFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_tab_tvshows, container, false);
         initUi();
-        listTopFilm();
-        listTrending();
-        listPeriodPieces();
+        getAllFilm();
+        rcvTest.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        rcvTest.setHasFixedSize(true);
+        rcvTest.setAdapter(testAdapter);
 
         return view;
     }
 
     private void initUi() {
-        rcvPersonal = view.findViewById(R.id.rcv_personal);
-        rcvTrending = view.findViewById(R.id.rcv_trending);
-        rcvPeriodPieces = view.findViewById(R.id.rcv_periodpieces);
+        rcvTest = view.findViewById(R.id.rcv_test);
     }
 
-    private void getDataAllFilm() {
-        Call<FilmResponse> responseDTOCall = ApiClient.getFilmService().getAllFilm(
+    private void getAllFilm(){
+        Call<ResponseTest> responseDTOCall = ApiClient.getFilmService().getAllFilmTest(
                 StoreUtil.get(getContext(), Contants.accessToken));
-        responseDTOCall.enqueue(new Callback<FilmResponse>() {
+        responseDTOCall.enqueue(new Callback<ResponseTest>() {
             @Override
-            public void onResponse(Call<FilmResponse> call, Response<FilmResponse> response) {
-                verticalFilmAdapter = new VerticalFilmAdapter(getContext(), response.body().getData());
-                rcvPersonal.setAdapter(verticalFilmAdapter);
-                rcvTrending.setAdapter(verticalFilmAdapter);
-                rcvPeriodPieces.setAdapter(verticalFilmAdapter);
-                verticalFilmAdapter.notifyDataSetChanged();
+            public void onResponse(Call<ResponseTest> call, Response<ResponseTest> response) {
+                testAdapter = new TestAdapter(getContext(), response.body().getData());
+                rcvTest.setAdapter(testAdapter);
             }
 
             @Override
-            public void onFailure(Call<FilmResponse> call, Throwable t) {
+            public void onFailure(Call<ResponseTest> call, Throwable t) {
                 t.printStackTrace();
             }
         });
     }
 
-    private void listTopFilm() {
-        getDataAllFilm();
-        rcvPersonal.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        rcvPersonal.setHasFixedSize(true);
-        rcvPersonal.setAdapter(verticalFilmAdapter);
-    }
-
-    private void listTrending() {
-        getDataAllFilm();
-        rcvTrending.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        rcvTrending.setHasFixedSize(true);
-        rcvTrending.setAdapter(verticalFilmAdapter);
-    }
-
-    private void listPeriodPieces() {
-        getDataAllFilm();
-        rcvPeriodPieces.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        rcvPeriodPieces.setHasFixedSize(true);
-        rcvPeriodPieces.setAdapter(verticalFilmAdapter);
-    }
 }

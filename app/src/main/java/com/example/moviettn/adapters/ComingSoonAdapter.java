@@ -42,20 +42,22 @@ public class ComingSoonAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         ((ItemViewHolder) holder).itemStoryLine.setText(film.getDescription());
         ((ItemViewHolder) holder).itemLimitAge.setText(film.getAgeLimit()+"+");
 
-        String delim = " •";
-        int i = 0;
-        StringBuilder str = new StringBuilder();
-        while ( i < film.getDirector().size() - 1)
-        {
+        if(film.getDirector().isEmpty()){
+            ((ItemViewHolder) holder).itemDirectors.setText("");
+        }else {
+            String delim = " •";
+            int i = 0;
+            StringBuilder str = new StringBuilder();
+            while (i < film.getDirector().size()-1) {
+                str.append(film.getDirector().get(i).getName());
+                str.append(delim);
+                i++;
+            }
             str.append(film.getDirector().get(i).getName());
-            str.append(delim);
-            i++;
+            String directors = str.toString();
+
+            ((ItemViewHolder) holder).itemDirectors.setText(directors);
         }
-        str.append(film.getDirector().get(i).getName());
-        String directors = str.toString();
-
-
-        ((ItemViewHolder) holder).itemDirectors.setText(directors);
 
         Picasso.with(mContext)
                 .load(imageUrl).error(R.drawable.backgroundslider).fit().centerInside().into(((ItemViewHolder) holder).itemBanner);

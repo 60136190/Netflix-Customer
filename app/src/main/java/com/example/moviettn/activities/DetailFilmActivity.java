@@ -1,6 +1,7 @@
 package com.example.moviettn.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.example.moviettn.R;
 import com.example.moviettn.adapters.ListCommentFilmAdapter;
 import com.example.moviettn.adapters.SeriesFilmAdapter;
+import com.example.moviettn.adapters.TopTenAdapter;
 import com.example.moviettn.api.ApiClient;
 import com.example.moviettn.model.request.CommentRequest;
 import com.example.moviettn.model.request.RatingRequest;
@@ -95,7 +97,25 @@ public class DetailFilmActivity extends AppCompatActivity {
                         String part1 = parts[0]; // 004
 
                         tvDate.setText(part1);
-                        tvCategory.setText(response.body().getData().get(0).getCategory().get(0).getName());
+
+                        if (response.body().getData().get(0).getDirector().isEmpty()) {
+                            tvCategory.setText("");
+                        } else {
+                            String delim = " •";
+                            int i = 0;
+                            StringBuilder str = new StringBuilder();
+                            while (i < response.body().getData().get(0).getDirector().size()-1) {
+                                str.append(response.body().getData().get(0).getDirector().get(i).getName());
+                                str.append(delim);
+                                i++;
+                            }
+                            str.append(response.body().getData().get(0).getDirector().get(i).getName());
+                            String directors = str.toString();
+                            tvCategory.setText(directors);
+
+                        }
+
+//                        tvCategory.setText(response.body().getData().get(0).getCategory().get(0).getName());
                         tvTime.setText(response.body().getData().get(0).getFilmLength());
                         tvCountry.setText(response.body().getData().get(0).getCountryProduction());
                         ratingBar.setRating(Float.parseFloat(rating));
@@ -114,31 +134,10 @@ public class DetailFilmActivity extends AppCompatActivity {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (isChecked) {
-                        Call<ResponseDTO> responseDTOCall = ApiClient.getFilmService().addFavoriteFilm(
-                                StoreUtil.get(DetailFilmActivity.this, Contants.accessToken), idFilm);
-                        responseDTOCall.enqueue(new Callback<ResponseDTO>() {
-                            @Override
-                            public void onResponse(Call<ResponseDTO> call, Response<ResponseDTO> response) {
-                            }
-
-                            @Override
-                            public void onFailure(Call<ResponseDTO> call, Throwable t) {
-                            }
-                        });
+                        addFavorite(idFilm);
+                        checkFavorite.setButtonDrawable(R.drawable.ic_favorite_checked);
                     } else {
-                        Call<ResponseDTO> responseDTOCall = ApiClient.getFilmService().deleteFavoriteFilm(
-                                StoreUtil.get(DetailFilmActivity.this, Contants.accessToken), idFilm);
-                        responseDTOCall.enqueue(new Callback<ResponseDTO>() {
-                            @Override
-                            public void onResponse(Call<ResponseDTO> call, Response<ResponseDTO> response) {
-
-                            }
-
-                            @Override
-                            public void onFailure(Call<ResponseDTO> call, Throwable t) {
-
-                            }
-                        });
+                        checkFavorite.setButtonDrawable(R.drawable.ic_favorite);
                     }
                 }
             });
@@ -212,19 +211,7 @@ public class DetailFilmActivity extends AppCompatActivity {
 
 
             //get list comment
-            Call<CommentResponse> listFavoriteFilmResponseCall = ApiClient.getFilmService().getAllCommentFollowFilm(
-                    StoreUtil.get(DetailFilmActivity.this, Contants.accessToken), idFilm);
-            listFavoriteFilmResponseCall.enqueue(new Callback<CommentResponse>() {
-                @Override
-                public void onResponse(Call<CommentResponse> call, Response<CommentResponse> response) {
-                    listCommentFilmAdapter = new ListCommentFilmAdapter(DetailFilmActivity.this, response.body().getData());
-                    recyclerViewComment.setAdapter(listCommentFilmAdapter);
-                }
-
-                @Override
-                public void onFailure(Call<CommentResponse> call, Throwable t) {
-                }
-            });
+            getListComment(idFilm);
 
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DetailFilmActivity.this);
             linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -258,44 +245,13 @@ public class DetailFilmActivity extends AppCompatActivity {
             GridLayoutManager gridLayoutManager = new GridLayoutManager(DetailFilmActivity.this, 2);
             rcvSeriesFilm.setLayoutManager(gridLayoutManager);
 
-
-            //get list favorite
-            Call<ListFavoriteFilmResponse> listFavoriteFilm = ApiClient.getFilmService().getListFavoriteFilm(
-                    StoreUtil.get(DetailFilmActivity.this, Contants.accessToken));
-            listFavoriteFilm.enqueue(new Callback<ListFavoriteFilmResponse>() {
-                @Override
-                public void onResponse(Call<ListFavoriteFilmResponse> call, Response<ListFavoriteFilmResponse> response) {
-                    for (int i = 0; i < response.body().getData().size(); i++) {
-                        if (response.body().getData().get(i).getFilm().getId().equals(idFilm)) {
-                            checkFavorite.setChecked(true);
-                        }
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<ListFavoriteFilmResponse> call, Throwable t) {
-
-                }
-            });
-
+            // get list favorite
+            getListFavorite(idFilm);
             swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
                     // get list comment
-                    Call<CommentResponse> listFavoriteFilmResponseCall = ApiClient.getFilmService().getAllCommentFollowFilm(
-                            StoreUtil.get(DetailFilmActivity.this, Contants.accessToken), idFilm);
-                    listFavoriteFilmResponseCall.enqueue(new Callback<CommentResponse>() {
-                        @Override
-                        public void onResponse(Call<CommentResponse> call, Response<CommentResponse> response) {
-                            listCommentFilmAdapter = new ListCommentFilmAdapter(DetailFilmActivity.this, response.body().getData());
-                            recyclerViewComment.setAdapter(listCommentFilmAdapter);
-                            listCommentFilmAdapter.notifyDataSetChanged();
-                        }
-
-                        @Override
-                        public void onFailure(Call<CommentResponse> call, Throwable t) {
-                        }
-                    });
+                    getListComment(idFilm);
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
@@ -349,6 +305,59 @@ public class DetailFilmActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ProfileResponse> call, Throwable t) {
+            }
+        });
+    }
+
+    private void getListComment(String idFilm) {
+        Call<CommentResponse> listFavoriteFilmResponseCall = ApiClient.getFilmService().getAllCommentFollowFilm(
+                StoreUtil.get(DetailFilmActivity.this, Contants.accessToken), idFilm);
+        listFavoriteFilmResponseCall.enqueue(new Callback<CommentResponse>() {
+            @Override
+            public void onResponse(Call<CommentResponse> call, Response<CommentResponse> response) {
+                listCommentFilmAdapter = new ListCommentFilmAdapter(DetailFilmActivity.this, response.body().getData());
+                recyclerViewComment.setAdapter(listCommentFilmAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<CommentResponse> call, Throwable t) {
+            }
+        });
+    }
+
+    private void addFavorite(String idFilm){
+        Call<ResponseDTO> responseDTOCall = ApiClient.getFilmService().addFavoriteFilm(
+                StoreUtil.get(DetailFilmActivity.this, Contants.accessToken), idFilm);
+        responseDTOCall.enqueue(new Callback<ResponseDTO>() {
+            @Override
+            public void onResponse(Call<ResponseDTO> call, Response<ResponseDTO> response) {
+            }
+
+            @Override
+            public void onFailure(Call<ResponseDTO> call, Throwable t) {
+            }
+        });
+    }
+
+    private void getListFavorite(String idFilm){
+        Call<ListFavoriteFilmResponse> listFavoriteFilm = ApiClient.getFilmService().getListFavoriteFilm(
+                StoreUtil.get(DetailFilmActivity.this, Contants.accessToken));
+        listFavoriteFilm.enqueue(new Callback<ListFavoriteFilmResponse>() {
+            @Override
+            public void onResponse(Call<ListFavoriteFilmResponse> call, Response<ListFavoriteFilmResponse> response) {
+                for (int i = 0; i < response.body().getData().size(); i++) {
+                    if(response.body().getData().get(i).getFilm() == null){
+
+                    }else
+                    if (response.body().getData().get(i).getFilm().getId().equals(idFilm)) {
+                        checkFavorite.setButtonDrawable(R.drawable.ic_favorite_checked);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ListFavoriteFilmResponse> call, Throwable t) {
+
             }
         });
     }

@@ -10,7 +10,6 @@
         android:id="@+id/img_user"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
-        android:src="@drawable/backgroundslider"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -21,7 +20,6 @@
         android:layout_marginLeft="@dimen/_5sdp"
         android:textSize="@dimen/_13ssp"
         android:textColor="@color/white"
-        android:text="Thai Van Nam"
         app:layout_constraintTop_toTopOf="@+id/img_user"
         app:layout_constraintLeft_toRightOf="@+id/img_user"/>
 
@@ -29,7 +27,6 @@
         android:id="@+id/tv_date_comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1 day ago"
         android:layout_marginLeft="@dimen/_5sdp"
         android:textColor="@color/gray_dot"
         android:textSize="@dimen/_10ssp"
@@ -41,7 +38,6 @@
         android:id="@+id/tv_comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="your comment"
         android:textSize="@dimen/_10ssp"
         android:textColor="@color/gray_dot"
         app:layout_constraintLeft_toLeftOf="@+id/tv_name_of_user"
