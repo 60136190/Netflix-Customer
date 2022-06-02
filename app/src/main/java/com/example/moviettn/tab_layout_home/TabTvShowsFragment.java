@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.moviettn.R;
 import com.example.moviettn.adapters.VerticalFilmAdapter;
@@ -18,6 +19,7 @@ import com.example.moviettn.model.test.ResponseTest;
 import com.example.moviettn.model.test.TestAdapter;
 import com.example.moviettn.utils.Contants;
 import com.example.moviettn.utils.StoreUtil;
+import com.example.moviettn.utils.TranslateAnimationUtil;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,6 +29,7 @@ import retrofit2.Response;
 public class TabTvShowsFragment extends Fragment {
     RecyclerView rcvTest;
     TestAdapter testAdapter;
+    Button btnToTop;
     private View view;
 
     @Override
@@ -36,15 +39,25 @@ public class TabTvShowsFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_tab_tvshows, container, false);
         initUi();
         getAllFilm();
+        rcvTest.setOnTouchListener(new TranslateAnimationUtil(getContext(),btnToTop));
         rcvTest.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         rcvTest.setHasFixedSize(true);
-        rcvTest.setAdapter(testAdapter);
+
+        btnToTop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rcvTest.smoothScrollToPosition(0);
+            }
+        });
+
+
 
         return view;
     }
 
     private void initUi() {
         rcvTest = view.findViewById(R.id.rcv_test);
+        btnToTop = view.findViewById(R.id.btn_to_top);
     }
 
     private void getAllFilm(){
