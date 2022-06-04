@@ -5,11 +5,13 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black"
+    android:fillViewport="true"
     tools:context=".tab_layout_home.TabHomeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+
         android:orientation="vertical">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -110,87 +112,20 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title_film"/>
 
-            <TextView
-                android:id="@+id/toppicks"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:text="Top picks for you"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_12ssp"
-                android:textStyle="bold"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_adult"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_300sdp"
                 app:layout_constraintTop_toBottomOf="@+id/btn_play"
-                app:layout_constraintLeft_toLeftOf="parent"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcv_personal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/toppicks" />
-
-            <TextView
-                android:id="@+id/trending"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:text="Trending Now"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_12ssp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/rcv_personal"
-                app:layout_constraintLeft_toLeftOf="parent"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcv_trending"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/trending"
+                app:layout_constraintBottom_toBottomOf="parent"
                 />
-
-            <TextView
-                android:id="@+id/periodpieces"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:text="Period Pieces"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_12ssp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/rcv_trending"
-                app:layout_constraintLeft_toLeftOf="parent"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcv_periodpieces"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/periodpieces"
-                />
-
-            <TextView
-                android:id="@+id/forKid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:text="For kid"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_12ssp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/rcv_periodpieces"
-                app:layout_constraintLeft_toLeftOf="parent"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcv_kid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/forKid"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/btn_play"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

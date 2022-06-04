@@ -2,6 +2,7 @@ package com.example.moviettn.api;
 
 import com.example.moviettn.model.request.CommentRequest;
 import com.example.moviettn.model.request.RatingRequest;
+import com.example.moviettn.model.response.AllFilmResponse;
 import com.example.moviettn.model.response.CategoriesResponse;
 import com.example.moviettn.model.response.CommentResponse;
 import com.example.moviettn.model.response.DetailFilmResponse;
@@ -10,7 +11,6 @@ import com.example.moviettn.model.response.FilmResponse;
 import com.example.moviettn.model.response.ListFavoriteFilmResponse;
 import com.example.moviettn.model.response.ResponseDTO;
 import com.example.moviettn.model.response.SeriesFilmResponse;
-import com.example.moviettn.model.test.ResponseTest;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -43,9 +43,13 @@ public interface Film {
     @GET("api/film/all")
     Call<FilmResponse> getAllFilm(@Header("Authorization") String authorization);
 
+    // get all film adult
+    @GET("api/film/adult/eachCategory")
+    Call<AllFilmResponse> getAllFilmAdult(@Header("Authorization") String authorization);
+
     // get all film /////////////////////////// TEST
-    @GET("api/film/all")
-    Call<ResponseTest> getAllFilmTest(@Header("Authorization") String authorization);
+//    @GET("api/film/all")
+//    Call<ResponseTest> getAllFilmTest(@Header("Authorization") String authorization);
 
     // get film follow category
     @GET("api/film/kid")

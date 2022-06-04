@@ -6,6 +6,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ import com.example.moviettn.model.response.FilmResponse;
 import com.example.moviettn.model.response.ListFavoriteFilmResponse;
 import com.example.moviettn.utils.Contants;
 import com.example.moviettn.utils.StoreUtil;
+import com.example.moviettn.utils.TranslateAnimationUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +38,8 @@ public class SearchFragment extends Fragment {
     private SearchFilmAdapter searchFilmAdapter;
     private View view;
     private List<Film> list;
-    private EditText edtSearch;
+    EditText edtSearch;
+    Button btnBacktoTop;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,11 +50,20 @@ public class SearchFragment extends Fragment {
         getData();
         // add all country in recycle view
         list = new ArrayList<>();
+        // back to top
+        rcvSearch.setOnTouchListener(new TranslateAnimationUtil(getContext(),btnBacktoTop));
 
         rcvSearch.setLayoutManager(new LinearLayoutManager(getContext()));
         rcvSearch.setHasFixedSize(true);
         searchFilmAdapter = new SearchFilmAdapter(getContext(), list);
         rcvSearch.setAdapter(searchFilmAdapter);
+
+        btnBacktoTop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rcvSearch.smoothScrollToPosition(0);
+            }
+        });
 
         // filter
         edtSearch.addTextChangedListener(new TextWatcher() {
@@ -76,6 +88,7 @@ public class SearchFragment extends Fragment {
     private void initUi() {
         rcvSearch = view.findViewById(R.id.rcv_search);
         edtSearch = view.findViewById(R.id.edt_search);
+        btnBacktoTop = view.findViewById(R.id.btn_to_top);
     }
 
     private void getData() {
