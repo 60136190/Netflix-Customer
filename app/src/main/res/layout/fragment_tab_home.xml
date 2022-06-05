@@ -113,19 +113,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_title_film"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcv_adult"
+                android:id="@+id/rcv_film"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
+                android:layout_height="@dimen/_500sdp"
                 app:layout_constraintTop_toBottomOf="@+id/btn_play"
                 app:layout_constraintBottom_toBottomOf="parent"
-                />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcv_kid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@+id/btn_play"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

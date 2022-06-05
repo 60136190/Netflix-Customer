@@ -47,9 +47,9 @@ public interface Film {
     @GET("api/film/adult/eachCategory")
     Call<AllFilmResponse> getAllFilmAdult(@Header("Authorization") String authorization);
 
-    // get all film /////////////////////////// TEST
-//    @GET("api/film/all")
-//    Call<ResponseTest> getAllFilmTest(@Header("Authorization") String authorization);
+    // get all film kid
+    @GET("api/film/kid/eachCategory")
+    Call<AllFilmResponse> getAllFilmKid(@Header("Authorization") String authorization);
 
     // get film follow category
     @GET("api/film/kid")

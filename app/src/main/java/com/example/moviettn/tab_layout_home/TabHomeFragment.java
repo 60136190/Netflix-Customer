@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,14 +42,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TabHomeFragment extends Fragment {
-    RecyclerView rcvAdult, rcvKid;
+    RecyclerView rcvFilm;
     AllFilmAdapter allFilmAdapter;
-    private View view;
-
-     TextView tv_Title;
-     ImageView img_Film;
-     ImageView img_AddMyList;
-    private Button btn_Play;
+    View view;
+    TextView tv_Title;
+    ImageView img_Film;
+    ImageView img_AddMyList;
+    Button btn_Play;
     private SlidingSquareLoaderView slidingSquareLoaderView;
 
     @Override
@@ -58,17 +58,14 @@ public class TabHomeFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_tab_home, container, false);
         initUi();
         getProfile();
-        getDataAllFilmAdult();
-        rcvAdult.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        rcvAdult.setHasFixedSize(true);
-
+        getDataFilmKid();
+        rcvFilm.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        rcvFilm.setHasFixedSize(true);
         return view;
     }
 
     private void initUi() {
-        rcvKid = view.findViewById(R.id.rcv_kid);
-        rcvAdult = view.findViewById(R.id.rcv_adult);
-        rcvKid = view.findViewById(R.id.rcv_kid);
+        rcvFilm = view.findViewById(R.id.rcv_film);
         img_Film = view.findViewById(R.id.img_film);
         btn_Play = view.findViewById(R.id.btn_play);
         img_AddMyList = view.findViewById(R.id.img_my_list);
@@ -83,7 +80,7 @@ public class TabHomeFragment extends Fragment {
             @Override
             public void onResponse(Call<AllFilmResponse> call, Response<AllFilmResponse> response) {
                 allFilmAdapter = new AllFilmAdapter(getContext(), response.body().getResults());
-                rcvAdult.setAdapter(allFilmAdapter);
+                rcvFilm.setAdapter(allFilmAdapter);
                 String title = response.body().getResults().get(0).getData().get(0).getTitle();
                 String idFilm = response.body().getResults().get(0).getData().get(0).getId();
                 String img = response.body().getResults().get(0).getData().get(0).getImageTitle().getUrl();
@@ -144,26 +141,73 @@ public class TabHomeFragment extends Fragment {
     }
 
     private void getDataFilmKid() {
-        Call<FilmResponse> responseDTOCall = ApiClient.getFilmService().getFilmKid(
+
+        Call<AllFilmResponse> responseDTOCall = ApiClient.getFilmService().getAllFilmKid(
                 StoreUtil.get(getContext(), Contants.accessToken));
-        responseDTOCall.enqueue(new Callback<FilmResponse>() {
+        responseDTOCall.enqueue(new Callback<AllFilmResponse>() {
             @Override
-            public void onResponse(Call<FilmResponse> call, Response<FilmResponse> response) {
+            public void onResponse(Call<AllFilmResponse> call, Response<AllFilmResponse> response) {
+                allFilmAdapter = new AllFilmAdapter(getContext(), response.body().getResults());
+                rcvFilm.setAdapter(allFilmAdapter);
+                String title = response.body().getResults().get(0).getData().get(0).getTitle();
+                String idFilm = response.body().getResults().get(0).getData().get(0).getId();
+                String img = response.body().getResults().get(0).getData().get(0).getImageTitle().getUrl();
+                tv_Title.setText(title);
+
+                Picasso.with(getContext())
+                        .load(img).error(R.drawable.backgroundslider).fit().centerInside().into(img_Film);
+
+                btn_Play.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(getContext(), DetailFilmActivity.class);
+                        i.putExtra("Id_film", idFilm);
+                        startActivity(i);
+                    }
+                });
+
+                img_AddMyList.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Call<ResponseDTO> responseDTOCall = ApiClient.getFilmService().addFavoriteFilm(
+                                StoreUtil.get(v.getContext(), Contants.accessToken), idFilm);
+                        responseDTOCall.enqueue(new Callback<ResponseDTO>() {
+                            @Override
+                            public void onResponse(Call<ResponseDTO> call, Response<ResponseDTO> response) {
+                                if (response.isSuccessful()) {
+                                    CountDownTimer countDownTimer = new CountDownTimer(3000, 1000) {
+                                        @Override
+                                        public void onTick(long millisUntilFinished) {
+                                            slidingSquareLoaderView.show();
+                                        }
+
+                                        @Override
+                                        public void onFinish() {
+                                            slidingSquareLoaderView.setVisibility(View.INVISIBLE);
+
+                                        }
+
+                                    };
+                                    countDownTimer.start();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseDTO> call, Throwable t) {
+                            }
+                        });
+                    }
+                });
+
             }
 
             @Override
-            public void onFailure(Call<FilmResponse> call, Throwable t) {
+            public void onFailure(Call<AllFilmResponse> call, Throwable t) {
                 t.printStackTrace();
             }
         });
     }
 
-    private void listFilmKid() {
-        getDataFilmKid();
-        rcvKid.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        rcvKid.setHasFixedSize(true);
-        rcvKid.setAdapter(allFilmAdapter);
-    }
 
     public void getProfile() {
         Call<ProfileResponse> proifileResponseCall = ApiClient.getUserService().getProfile(
@@ -172,9 +216,18 @@ public class TabHomeFragment extends Fragment {
             @Override
             public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
                 String adult = response.body().getUser().getAdult();
-                String a = "0";
+                String a = "1";
+                String b = "0";
                 if (adult.equals(a)) {
-                    rcvKid.setVisibility(View.GONE);
+                    getDataAllFilmAdult();
+                    rcvFilm.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+                    rcvFilm.setHasFixedSize(true);
+                }
+
+                if (adult.equals(b)){
+                    getDataFilmKid();
+                    rcvFilm.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+                    rcvFilm.setHasFixedSize(true);
                 }
 
             }

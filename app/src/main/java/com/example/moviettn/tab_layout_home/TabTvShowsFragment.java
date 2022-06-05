@@ -26,7 +26,7 @@ import retrofit2.Response;
 
 public class TabTvShowsFragment extends Fragment {
     RecyclerView rcvAdult;
-    AllFilmAdapter testAdapter;
+    private AllFilmAdapter testAdapter;
     Button btnToTop;
     private View view;
 
