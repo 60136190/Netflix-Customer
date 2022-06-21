@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,8 @@ import com.example.moviettn.model.response.ResponseDTO;
 import com.example.moviettn.utils.Contants;
 import com.example.moviettn.utils.StoreUtil;
 import com.example.moviettn.utils.TranslateAnimationUtil;
+import com.github.ybq.android.spinkit.sprite.Sprite;
+import com.github.ybq.android.spinkit.style.Circle;
 import com.squareup.picasso.Picasso;
 import com.steelkiwi.library.SlidingSquareLoaderView;
 
@@ -44,12 +47,11 @@ import retrofit2.Response;
 public class TabHomeFragment extends Fragment {
     RecyclerView rcvFilm;
     AllFilmAdapter allFilmAdapter;
-    View view;
-    TextView tv_Title;
-    ImageView img_Film;
-    ImageView img_AddMyList;
+    TextView tv_Title, tvMyList;
+    ImageView img_Film, img_AddMyList;
     Button btn_Play;
-    private SlidingSquareLoaderView slidingSquareLoaderView;
+    ProgressBar progressBar;
+    View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,9 +60,7 @@ public class TabHomeFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_tab_home, container, false);
         initUi();
         getProfile();
-        getDataFilmKid();
-        rcvFilm.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        rcvFilm.setHasFixedSize(true);
+
         return view;
     }
 
@@ -69,8 +69,9 @@ public class TabHomeFragment extends Fragment {
         img_Film = view.findViewById(R.id.img_film);
         btn_Play = view.findViewById(R.id.btn_play);
         img_AddMyList = view.findViewById(R.id.img_my_list);
-        slidingSquareLoaderView = view.findViewById(R.id.progress_item_add_list);
+        progressBar = (ProgressBar) view.findViewById(R.id.spin_kit);
         tv_Title = view.findViewById(R.id.tv_title_film);
+        tvMyList = view.findViewById(R.id.mylist);
     }
 
     private void getDataAllFilmAdult() {
@@ -85,6 +86,8 @@ public class TabHomeFragment extends Fragment {
                 String idFilm = response.body().getResults().get(0).getData().get(0).getId();
                 String img = response.body().getResults().get(0).getData().get(0).getImageTitle().getUrl();
                 tv_Title.setText(title);
+                img_AddMyList.setVisibility(View.VISIBLE);
+                tvMyList.setVisibility(View.VISIBLE);
 
                 Picasso.with(getContext())
                         .load(img).error(R.drawable.backgroundslider).fit().centerInside().into(img_Film);
@@ -110,12 +113,12 @@ public class TabHomeFragment extends Fragment {
                                     CountDownTimer countDownTimer = new CountDownTimer(3000, 1000) {
                                         @Override
                                         public void onTick(long millisUntilFinished) {
-                                            slidingSquareLoaderView.show();
+                                            setProgres();
                                         }
 
                                         @Override
                                         public void onFinish() {
-                                            slidingSquareLoaderView.setVisibility(View.INVISIBLE);
+                                            setProgres();
 
                                         }
 
@@ -141,7 +144,6 @@ public class TabHomeFragment extends Fragment {
     }
 
     private void getDataFilmKid() {
-
         Call<AllFilmResponse> responseDTOCall = ApiClient.getFilmService().getAllFilmKid(
                 StoreUtil.get(getContext(), Contants.accessToken));
         responseDTOCall.enqueue(new Callback<AllFilmResponse>() {
@@ -178,13 +180,12 @@ public class TabHomeFragment extends Fragment {
                                     CountDownTimer countDownTimer = new CountDownTimer(3000, 1000) {
                                         @Override
                                         public void onTick(long millisUntilFinished) {
-                                            slidingSquareLoaderView.show();
+                                           setProgres();
                                         }
 
                                         @Override
                                         public void onFinish() {
-                                            slidingSquareLoaderView.setVisibility(View.INVISIBLE);
-
+                                            setProgres();
                                         }
 
                                     };
@@ -198,7 +199,6 @@ public class TabHomeFragment extends Fragment {
                         });
                     }
                 });
-
             }
 
             @Override
@@ -208,7 +208,6 @@ public class TabHomeFragment extends Fragment {
         });
     }
 
-
     public void getProfile() {
         Call<ProfileResponse> proifileResponseCall = ApiClient.getUserService().getProfile(
                 StoreUtil.get(getContext(), "Authorization"));
@@ -217,14 +216,11 @@ public class TabHomeFragment extends Fragment {
             public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
                 String adult = response.body().getUser().getAdult();
                 String a = "1";
-                String b = "0";
                 if (adult.equals(a)) {
                     getDataAllFilmAdult();
                     rcvFilm.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
                     rcvFilm.setHasFixedSize(true);
-                }
-
-                if (adult.equals(b)){
+                }else{
                     getDataFilmKid();
                     rcvFilm.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
                     rcvFilm.setHasFixedSize(true);
@@ -239,4 +235,27 @@ public class TabHomeFragment extends Fragment {
         });
     }
 
+    private void setProgres() {
+        Circle foldingCube = new Circle();
+        progressBar.setIndeterminateDrawable(foldingCube);
+        progressBar.setVisibility(View.VISIBLE);
+
+        CountDownTimer countDownTimer = new CountDownTimer(5000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                int current = progressBar.getProgress();
+                if (current >= progressBar.getMax()) {
+                    current = 0;
+                }
+                progressBar.setProgress(current + 10);
+            }
+
+            @Override
+            public void onFinish() {
+                progressBar.setVisibility(View.INVISIBLE);
+            }
+
+        };
+        countDownTimer.start();
+    }
 }

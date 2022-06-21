@@ -11,7 +11,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:orientation="vertical">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -28,24 +27,17 @@
                     android:layout_height="@dimen/_300sdp"
                     android:scaleType="centerCrop"
                    />
-                <com.steelkiwi.library.SlidingSquareLoaderView
-                    android:id="@+id/progress_item_add_list"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_gravity="center"
+                <com.github.ybq.android.spinkit.SpinKitView
+                    android:id="@+id/spin_kit"
+                    style="@style/SpinKitView.Small.Circle"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:max="150"
+                    android:progress="10"
                     android:visibility="invisible"
-                    android:background="@color/black"
-                    android:backgroundTint="@color/black"
-                    app:sslv_corner_radius="@dimen/_5sdp"
-                    app:sslv_margin="@dimen/_3sdp"
-                    app:sslv_end_gradient_color="@color/end_gradient_color"
-                    app:sslv_start_gradient_color="@color/start_gradient_color"
-                    app:sslv_background_color="@color/background"
-                    app:sslv_square_size="@dimen/square_size"
-                    app:layout_constraintTop_toBottomOf="@+id/card_img_film"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"/>
+                    android:layout_gravity="center"
+                    app:SpinKit_Color="@color/white" />
+
             </FrameLayout>
 
 
@@ -54,7 +46,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="dagsudaidsia"
                 android:textSize="@dimen/_13ssp"
                 android:textColor="@color/white"
                 app:layout_constraintTop_toBottomOf="@+id/frame_img"/>
@@ -63,6 +54,7 @@
                 android:id="@+id/img_my_list"
                 android:layout_width="@dimen/_15sdp"
                 android:layout_height="@dimen/_15sdp"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginLeft="@dimen/_30sdp"
                 android:src="@drawable/ic_add"
@@ -70,8 +62,10 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title_film"/>
             <TextView
+                android:id="@+id/mylist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:text="My List"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_10ssp"
@@ -93,7 +87,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="My List"
+                android:text="Info"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintLeft_toLeftOf="@+id/img_info"

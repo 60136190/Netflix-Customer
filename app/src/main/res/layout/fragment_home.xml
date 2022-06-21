@@ -132,13 +132,4 @@
         android:layout_gravity="center"
         app:SpinKit_Color="@color/white" />
 
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/gif_change_state"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="9dp"
-        android:visibility="gone"
-        android:src="@drawable/changestate" />
-
-
 </FrameLayout>

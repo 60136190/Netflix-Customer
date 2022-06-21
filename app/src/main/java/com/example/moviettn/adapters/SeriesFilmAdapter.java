@@ -2,6 +2,7 @@ package com.example.moviettn.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +17,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.moviettn.R;
 import com.example.moviettn.activities.DetailFilmActivity;
 import com.example.moviettn.activities.DetailVideoActivity;
+import com.example.moviettn.api.ApiClient;
 import com.example.moviettn.model.DetailFilm;
 import com.example.moviettn.model.Film;
 import com.example.moviettn.model.SeriesFilm;
+import com.example.moviettn.model.response.CheckFilmCanWatch;
+import com.example.moviettn.utils.Contants;
+import com.example.moviettn.utils.StoreUtil;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class SeriesFilmAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-    private Context mContext;
+public class SeriesFilmAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    Context mContext;
     List<SeriesFilm> mDetailFilms;
 
     public SeriesFilmAdapter(Context mContext, List<SeriesFilm> mDetailFilms) {
@@ -37,21 +46,21 @@ public class SeriesFilmAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_series_film,parent,false);
+                .inflate(R.layout.item_series_film, parent, false);
         return new ItemViewHolder(view);
     }
 
     @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         SeriesFilm detailFilm = mDetailFilms.get(position);
         String imgFilm = detailFilm.getUrlImage();
         String urlVideo = detailFilm.getUrlVideo();
         int episode = detailFilm.getEpisode();
-        ((ItemViewHolder) holder).tvSeries.setText(String.valueOf(detailFilm.getEpisode()));
+        ((ItemViewHolder) holder).tvSeries.setText(String.valueOf("Tập. "+detailFilm.getEpisode()));
         Picasso.with(mContext)
                 .load(imgFilm).error(R.drawable.error).fit().centerInside().into(((ItemViewHolder) holder).imgFilm);
 
-        ((ItemViewHolder) holder).ctSeriesFilm.setOnClickListener(new View.OnClickListener() {
+        ((ItemViewHolder) holder).imgPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(mContext, DetailVideoActivity.class);
@@ -60,13 +69,21 @@ public class SeriesFilmAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 mContext.startActivity(i);
             }
         });
+        String canwatch = "true";
+        if (StoreUtil.get(mContext, Contants.canWatch).equals(canwatch)) {
+            ((ItemViewHolder) holder).imgPlay.setVisibility(View.VISIBLE);
+            Log.i("oknhaa", "can watch");
+        } else {
+            ((ItemViewHolder) holder).imgPlay.setVisibility(View.INVISIBLE);
+            Log.i("oknhaa", "can't watch");
+        }
 
     }
 
 
     @Override
     public int getItemCount() {
-        if (mDetailFilms != null){
+        if (mDetailFilms != null) {
             return mDetailFilms.size();
         }
         return 0;
@@ -74,15 +91,14 @@ public class SeriesFilmAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
-        public ImageView imgFilm;
-        public TextView tvSeries;
-        public ConstraintLayout ctSeriesFilm;
+        ImageView imgFilm, imgPlay;
+        TextView tvSeries;
 
-        public ItemViewHolder( View itemView) {
+        public ItemViewHolder(View itemView) {
             super(itemView);
             imgFilm = itemView.findViewById(R.id.img_film);
             tvSeries = itemView.findViewById(R.id.tv_series_film);
-            ctSeriesFilm = itemView.findViewById(R.id.ct_series_film);
+            imgPlay = itemView.findViewById(R.id.img_play);
         }
     }
 

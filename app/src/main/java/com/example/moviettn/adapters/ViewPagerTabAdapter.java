@@ -48,10 +48,10 @@ public class ViewPagerTabAdapter extends FragmentStatePagerAdapter {
                 title = "Home";
                 break;
             case 1:
-                title = "Movies";
+                title = "\uD83C\uDF9E Movies";
                 break;
             case 2:
-                title = "Tv Shows";
+                title = "\uD83D\uDCFA Tv Shows";
                 break;
             case 3:
                 title = "Categories";

@@ -16,27 +16,20 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_200sdp"
             app:layout_constraintTop_toTopOf="parent">
-            <ImageView
-                android:id="@+id/img_film"
+
+            <VideoView
+                android:id="@+id/video_film"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_200sdp"
-                android:scaleType="centerCrop"
-                app:layout_constraintTop_toTopOf="parent" />
-            <ImageView
-                android:id="@+id/img_play"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_play"
-                app:tint="@color/red" />
+                android:layout_height="@dimen/_200sdp" />
+
             <ImageView
                 android:id="@+id/img_buy"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_40sdp"
                 android:visibility="gone"
                 android:layout_gravity="center"
-                android:src="@drawable/shoppingcart"
-                app:tint="@color/red" />
+                android:src="@drawable/buy"
+                />
         </FrameLayout>
 
 
@@ -242,6 +235,35 @@
                                     android:textColor="@color/gray_dot"
                                     android:textSize="@dimen/_12ssp" />
                             </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/ln_episode"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:weightSum="10"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/ln_theoloai">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_5sdp"
+                                    android:layout_weight="3"
+                                    android:text="Số tập"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/_12ssp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tv_total_episode"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_10sdp"
+                                    android:layout_weight="7"
+                                    android:textColor="@color/gray_dot"
+                                    android:textSize="@dimen/_12ssp" />
+                            </LinearLayout>
 
                             <RatingBar
                                 android:id="@+id/rating_bar"
@@ -256,7 +278,7 @@
                                 android:transformPivotX="0dp"
                                 android:transformPivotY="0dp"
                                 app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/ln_theoloai" />
+                                app:layout_constraintTop_toBottomOf="@+id/ln_episode" />
 
                             <LinearLayout
                                 android:id="@+id/ln_yeuthich"

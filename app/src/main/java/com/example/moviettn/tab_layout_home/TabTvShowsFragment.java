@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.moviettn.R;
 import com.example.moviettn.adapters.AllFilmAdapter;
@@ -28,6 +29,7 @@ public class TabTvShowsFragment extends Fragment {
     RecyclerView rcvAdult;
     private AllFilmAdapter testAdapter;
     Button btnToTop;
+    ImageView imgLogoKid;
     private View view;
 
     @Override
@@ -36,10 +38,16 @@ public class TabTvShowsFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_tab_tvshows, container, false);
         initUi();
-        getAllFilm();
-        rcvAdult.setOnTouchListener(new TranslateAnimationUtil(getContext(),btnToTop));
-        rcvAdult.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        rcvAdult.setHasFixedSize(true);
+
+        String adult = StoreUtil.get(getContext(),Contants.adult);
+        String a ="1";
+        if (adult.equals(a)){
+            rcvAdult.setVisibility(View.VISIBLE);
+            btnToTop.setVisibility(View.VISIBLE);
+            setData();
+        }else{
+            imgLogoKid.setVisibility(View.VISIBLE);
+        }
 
         btnToTop.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +62,7 @@ public class TabTvShowsFragment extends Fragment {
     private void initUi() {
         rcvAdult = view.findViewById(R.id.rcv_test);
         btnToTop = view.findViewById(R.id.btn_to_top);
+        imgLogoKid = view.findViewById(R.id.img_logoKid);
     }
 
     private void getAllFilm(){
@@ -71,6 +80,13 @@ public class TabTvShowsFragment extends Fragment {
                 t.printStackTrace();
             }
         });
+    }
+
+    private void setData(){
+        getAllFilm();
+        rcvAdult.setOnTouchListener(new TranslateAnimationUtil(getContext(),btnToTop));
+        rcvAdult.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        rcvAdult.setHasFixedSize(true);
     }
 
 }

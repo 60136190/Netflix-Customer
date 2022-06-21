@@ -75,6 +75,7 @@ public class ListCommentFilmAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             String strIdFilm = comment.getFilm();
             String strDate = comment.getCreatedAt();
 
+
             Call<ProfileResponse> proifileResponseCall = ApiClient.getUserService().getProfile(
                     StoreUtil.get(mContext, "Authorization"));
             proifileResponseCall.enqueue(new Callback<ProfileResponse>() {
@@ -97,7 +98,7 @@ public class ListCommentFilmAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             });
             ((ItemViewHolder) holder).tvComment.setText(strComment);
             ((ItemViewHolder) holder).tvNameOfUser.setText(nameOfUser);
-            ((ItemViewHolder) holder).tvDate.setText(strDate);
+            ((ItemViewHolder) holder).tvDate.setText(strDate.substring(0,10));
             Picasso.with(mContext)
                     .load(strImgUser).error(R.drawable.backgroundslider).fit().centerInside().into(((ItemViewHolder) holder).imgUser);
 

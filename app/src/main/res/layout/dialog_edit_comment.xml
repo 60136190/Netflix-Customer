@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/_20sdp"
     android:background="@drawable/border_background_10sdp"
-    android:backgroundTint="@color/background">
+    android:backgroundTint="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,19 +20,19 @@
             android:layout_weight="8"
             android:gravity="center"
             android:text="Edit your comment"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13ssp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/edt_edit_comment"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_70sdp"
+            android:layout_height="@dimen/_50sdp"
             android:layout_margin="@dimen/_10sdp"
             android:background="@drawable/border_background_10sdp"
-            android:backgroundTint="@color/gray_dot"
-            android:textColor="@color/white"
+            android:backgroundTint="@color/gray"
+            android:textColor="@color/black"
             android:textSize="@dimen/_13ssp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -51,9 +51,9 @@
             <Button
                 android:id="@+id/btn_cancel"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_30sdp"
                 android:layout_margin="@dimen/_10sdp"
-                android:backgroundTint="@color/gray_dot"
+                android:backgroundTint="@color/red"
                 android:text="Cancel"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
@@ -63,9 +63,9 @@
             <Button
                 android:id="@+id/btn_save_comment"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_30sdp"
                 android:layout_margin="@dimen/_10sdp"
-                android:backgroundTint="@color/red"
+                android:backgroundTint="@color/blue"
                 android:text="Save"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
@@ -84,6 +84,6 @@
         android:progress="10"
         android:visibility="invisible"
         android:layout_gravity="center"
-        app:SpinKit_Color="@color/white" />
+        app:SpinKit_Color="@color/second_red" />
 </FrameLayout>
 

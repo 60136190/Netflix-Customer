@@ -1,14 +1,18 @@
 package com.example.moviettn.api;
 
 import com.example.moviettn.model.request.CommentRequest;
+import com.example.moviettn.model.request.CreateBillRequest;
 import com.example.moviettn.model.request.RatingRequest;
 import com.example.moviettn.model.response.AllFilmResponse;
 import com.example.moviettn.model.response.CategoriesResponse;
+import com.example.moviettn.model.response.CheckFilmCanWatch;
 import com.example.moviettn.model.response.CommentResponse;
 import com.example.moviettn.model.response.DetailFilmResponse;
 import com.example.moviettn.model.response.DirectorResponse;
 import com.example.moviettn.model.response.FilmResponse;
+import com.example.moviettn.model.response.HistoryBillResponse;
 import com.example.moviettn.model.response.ListFavoriteFilmResponse;
+import com.example.moviettn.model.response.ModeOfPaymentResponse;
 import com.example.moviettn.model.response.ResponseDTO;
 import com.example.moviettn.model.response.SeriesFilmResponse;
 
@@ -88,7 +92,23 @@ public interface Film {
     Call<ResponseDTO> editComment(@Header("Authorization") String authorization, @Path("id") String idComment, @Body CommentRequest commentRequest);
 
     // update comment film
-    @DELETE("api/comment/delete/{id}")
+    @PATCH("api/comment/softDelete/{id}")
     Call<ResponseDTO> deleteComment(@Header("Authorization") String authorization, @Path("id") String idComment);
+
+    // get all comment film
+    @GET("api/modeOfPayment/all")
+    Call<ModeOfPaymentResponse> getAllModeOfPayment(@Header("Authorization") String authorization);
+
+    // check film can watch
+    @GET("api/bill/checkCanWatchFilm/{id}")
+    Call<CheckFilmCanWatch> checkFilmCanWatch(@Header("Authorization") String authorization, @Path("id") String idFilm);
+
+    // buy film with paypal
+    @POST("api/bill/Paypal/create")
+    Call<ResponseDTO> createBill(@Header("Authorization") String authorization, @Body CreateBillRequest createBillRequest);
+
+    // get all history bill
+    @GET("api/bill/history")
+    Call<HistoryBillResponse> getHistoryBill(@Header("Authorization") String authorization);
 
 }

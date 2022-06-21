@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.moviettn.R;
 import com.example.moviettn.activities.DetailFilmActivity;
 import com.example.moviettn.model.response.DataAllFilm;
+import com.example.moviettn.utils.Contants;
+import com.example.moviettn.utils.StoreUtil;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -51,8 +53,10 @@ public class DetailFilmAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(mContext, DetailFilmActivity.class);
-                String strName = dataAllFilm.getId();
-                i.putExtra("Id_film", strName);
+                StoreUtil.save(mContext,Contants.idFilm,dataAllFilm.getId());
+                StoreUtil.save(mContext,Contants.price,String.valueOf(dataAllFilm.getPrice()));
+                StoreUtil.save(mContext,Contants.titleFilm,String.valueOf(dataAllFilm.getTitle()));
+                StoreUtil.save(mContext,Contants.urlFilm,String.valueOf(dataAllFilm.getImageFilm().getUrl()));
                 mContext.startActivity(i);
 
             }

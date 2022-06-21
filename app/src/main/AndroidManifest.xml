@@ -5,6 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <queries>
         <intent>
@@ -20,6 +23,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieTTN"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".activities.TestCreateBillActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.UpdatePasswordLoginGoogleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.DetailBillActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.HistoryBillActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.PayPaymentDetails"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CreateBillActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ModeOfPaymentActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.DetailFilmFollowOptionActivity"
             android:exported="false" />

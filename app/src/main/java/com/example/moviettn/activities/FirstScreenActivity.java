@@ -37,7 +37,7 @@ public class FirstScreenActivity extends AppCompatActivity {
                     startActivity(i3);
                 }else{
                     getReFreshToken();
-                    Intent intentslide = new Intent(FirstScreenActivity.this, MainActivity.class);
+                    Intent intentslide = new Intent(FirstScreenActivity.this, SelectStateActivity.class);
                     startActivity(intentslide);
                     finish();
                 }

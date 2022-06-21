@@ -202,7 +202,7 @@ public class LoginActivity extends AppCompatActivity {
                         StoreUtil.save(LoginActivity.this, Contants.refreshToken, part1);
 
                         StoreUtil.save(LoginActivity.this, Contants.accessToken, response.body().getAccesstoken());
-                        Intent intentslide = new Intent(LoginActivity.this, MainActivity.class);
+                        Intent intentslide = new Intent(LoginActivity.this, UpdatePasswordLoginGoogleActivity.class);
                         startActivity(intentslide);
                         finish();
                     } else {

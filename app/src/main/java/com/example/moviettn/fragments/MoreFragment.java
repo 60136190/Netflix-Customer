@@ -1,56 +1,47 @@
 package com.example.moviettn.fragments;
-import android.app.Dialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+
 import com.bumptech.glide.Glide;
 import com.example.moviettn.R;
 import com.example.moviettn.activities.ChangePasswordActivity;
+import com.example.moviettn.activities.HistoryBillActivity;
 import com.example.moviettn.activities.InformationUserActivity;
 import com.example.moviettn.activities.ListFavotireActivity;
 import com.example.moviettn.activities.SendFeedBackActivity;
 import com.example.moviettn.activities.UpdateInformationUserActivity;
 import com.example.moviettn.api.ApiClient;
+import com.example.moviettn.model.request.UpdateStateUserRequest;
 import com.example.moviettn.model.response.ProfileResponse;
-import com.example.moviettn.model.response.ResponseDTO;
+import com.example.moviettn.model.response.UpdateStateUserResponse;
 import com.example.moviettn.utils.Contants;
 import com.example.moviettn.utils.StoreUtil;
-import com.github.ybq.android.spinkit.style.Circle;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
-import java.util.concurrent.Executor;
-
+import pl.droidsonroids.gif.GifImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MoreFragment extends Fragment {
 
-    private ImageView imgUser;
-    private TextView tvSendFeedBack;
+    ImageView imgUser;
+    TextView tvSendFeedBack;
+    Button btnHistoryBill, btnSetUp;
+    private GifImageView gifChangeState;
     private View view;
+    private UpdateStateUserRequest updateStateUserRequest;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,12 +58,73 @@ public class MoreFragment extends Fragment {
             }
         });
 
+        btnHistoryBill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryBillActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnSetUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View viewdialog = getLayoutInflater().inflate(R.layout.bottom_sheet_select_state, null);
+                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getContext());
+                bottomSheetDialog.setContentView(viewdialog);
+                bottomSheetDialog.show();
+                ImageView img_close = viewdialog.findViewById(R.id.img_close);
+                ImageView img_Adults = viewdialog.findViewById(R.id.img_adults);
+                ImageView img_Kid = viewdialog.findViewById(R.id.img_kid);
+
+                img_close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        bottomSheetDialog.dismiss();
+                    }
+                });
+                img_Adults.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        UpdateStateUsertoAdultorKid("1");
+                        bottomSheetDialog.dismiss();
+                        getProfile();
+                    }
+                });
+                img_Kid.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        UpdateStateUsertoAdultorKid("0");
+                        bottomSheetDialog.dismiss();
+                        CountDownTimer countDownTimer = new CountDownTimer(3500, 1000) {
+                            @Override
+                            public void onTick(long millisUntilFinished) {
+                                gifChangeState.setVisibility(View.VISIBLE);
+                            }
+
+                            @Override
+                            public void onFinish() {
+                                gifChangeState.setVisibility(View.GONE);
+                                getProfile();
+                            }
+
+                        };
+                        countDownTimer.start();
+                    }
+                });
+
+            }
+        });
+
         return view;
     }
 
     private void initUi() {
         imgUser = view.findViewById(R.id.img_user);
         tvSendFeedBack = view.findViewById(R.id.tv_send_feedback);
+        btnHistoryBill = view.findViewById(R.id.btn_history_bill);
+        btnSetUp = view.findViewById(R.id.btn_setup);
+        gifChangeState = view.findViewById(R.id.gif_change_state);
     }
 
     public void getProfile() {
@@ -84,7 +136,6 @@ public class MoreFragment extends Fragment {
                 if (response.isSuccessful()) {
                     String im = response.body().getUser().getImage().getUrl();
                     String adult = response.body().getUser().getAdult();
-                    StoreUtil.save(getContext(), Contants.adult, adult);
                     String a="1";
 
                     if (adult.equals(a)) {
@@ -105,4 +156,20 @@ public class MoreFragment extends Fragment {
         });
     }
 
+    private void UpdateStateUsertoAdultorKid(String number) {
+        updateStateUserRequest = new UpdateStateUserRequest(number);
+        Call<UpdateStateUserResponse> updateStateAdult = ApiClient.getUserService().updateStateUser(
+                StoreUtil.get(getContext(), Contants.accessToken), updateStateUserRequest);
+        updateStateAdult.enqueue(new Callback<UpdateStateUserResponse>() {
+            @Override
+            public void onResponse(Call<UpdateStateUserResponse> call, Response<UpdateStateUserResponse> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<UpdateStateUserResponse> call, Throwable t) {
+
+            }
+        });
+    }
 }

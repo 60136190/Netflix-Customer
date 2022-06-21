@@ -40,7 +40,6 @@ public class SliderActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent4 = new Intent(SliderActivity.this, LoginActivity.class);
                 startActivity(intent4);
-                finish();
             }
         });
 

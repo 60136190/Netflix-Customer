@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/_20sdp"
-    android:backgroundTint="@color/background"
+    android:backgroundTint="@color/white"
     android:background="@drawable/border_background_10sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -11,16 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-    <ImageView
-        android:id="@+id/imgwarning"
-        android:layout_width="@dimen/_40sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_margin="@dimen/_10sdp"
-        android:src="@drawable/warning"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
         <TextView
             android:id="@+id/a"
             android:layout_width="match_parent"
@@ -28,12 +18,12 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="Are you sure?"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/_14ssp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgwarning"/>
+            app:layout_constraintTop_toTopOf="parent"/>
 
 
     <LinearLayout
@@ -48,19 +38,19 @@
         <Button
             android:id="@+id/btn_cancel"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_30sdp"
             android:layout_margin="@dimen/_10sdp"
             android:text="Cancel"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:backgroundTint="@color/gray_dot"
+            android:backgroundTint="@color/blue"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_edit_address"/>
 
         <Button
             android:id="@+id/btn_confirm_delete"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_30sdp"
             android:layout_margin="@dimen/_10sdp"
             android:text="Yup"
             android:textAllCaps="false"
@@ -79,7 +69,7 @@
             android:progress="10"
             android:visibility="invisible"
             android:layout_gravity="center"
-            app:SpinKit_Color="@color/white"
+            app:SpinKit_Color="@color/second_red"
            app:layout_constraintTop_toTopOf="parent"
            app:layout_constraintRight_toRightOf="parent"
            app:layout_constraintLeft_toLeftOf="parent"

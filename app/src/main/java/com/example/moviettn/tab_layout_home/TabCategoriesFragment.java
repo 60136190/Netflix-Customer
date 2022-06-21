@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,9 +37,12 @@ import retrofit2.Response;
 
 
 public class TabCategoriesFragment extends Fragment {
-    private Button btnChooseCategory, btnChooseDirector;
+
+    Button btnChooseCategory, btnChooseDirector;
+    ImageView imgLogoKid;
+    ConstraintLayout ctCategory;
     private View view;
-    ArrayList<String> categoryList = new ArrayList<>();
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,8 +50,18 @@ public class TabCategoriesFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_tab_categories, container, false);
         initUi();
-        chooseCategory();
-        chooseDirector();
+        String adult = StoreUtil.get(getContext(),Contants.adult);
+        String a ="1";
+        if (adult.equals(a)){
+            ctCategory.setVisibility(View.VISIBLE);
+            chooseCategory();
+            chooseDirector();
+        }else{
+            imgLogoKid.setVisibility(View.VISIBLE);
+        }
+
+
+
 
         return view;
     }
@@ -55,6 +69,8 @@ public class TabCategoriesFragment extends Fragment {
     private void initUi() {
         btnChooseCategory = view.findViewById(R.id.btn_chooseCategory);
         btnChooseDirector = view.findViewById(R.id.btn_chooseDirector);
+        imgLogoKid = view.findViewById(R.id.img_logoKid);
+        ctCategory = view.findViewById(R.id.ct_category);
     }
 
     private void chooseCategory(){
@@ -170,43 +186,4 @@ public class TabCategoriesFragment extends Fragment {
         });
 
     }
-
-
-
-
-//    private void spinner(){
-//        Call<CategoriesResponse> listFavoriteFilmResponseCall = ApiClient.getFilmService().getAllCategory(
-//                StoreUtil.get(getContext(), Contants.accessToken));
-//        listFavoriteFilmResponseCall.enqueue(new Callback<CategoriesResponse>() {
-//            @Override
-//            public void onResponse(Call<CategoriesResponse> call, Response<CategoriesResponse> response) {
-//                for(int i = 0; i < response.body().getData().toArray().length; i++){
-//                    String data = response.body().getData().get(i).getId();
-//                    categoryList.add(data);
-//                    ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item,categoryList);
-//                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                    spinnerCategory.setAdapter(adapter);
-//
-//                    spinnerCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//                        @Override
-//                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                            getListFilmFollowCategory(data);
-//                        }
-//
-//                        @Override
-//                        public void onNothingSelected(AdapterView<?> parent) {
-//
-//                        }
-//                    });
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<CategoriesResponse> call, Throwable t) {
-//                Toast.makeText(getContext(), "Maybe is wrong", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
-
-
 }

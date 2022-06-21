@@ -5,82 +5,48 @@
     android:layout_height="match_parent"
     android:background="@color/black">
 
-        <ImageView
-            android:id="@+id/img_close"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:layout_margin="@dimen/_10sdp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:src="@drawable/xmark"
-            app:tint="@color/text_gray" />
+    <ImageView
+        android:id="@+id/img_close"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_margin="@dimen/_10sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:src="@drawable/xmark"
+        app:tint="@color/text_gray" />
 
     <LinearLayout
-        android:id="@+id/ln_a"
-        android:layout_width="match_parent"
+        android:id="@+id/ln_state"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:orientation="horizontal"
-        android:weightSum="10"
+        android:layout_weight="5"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_close">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview_img_user"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/share_screen"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/share_screen">
 
-        <LinearLayout
-            android:layout_width="0dp"
+            <ImageView
+                android:id="@+id/img_user"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/user"
+                android:scaleType="fitXY" />
+        </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/tv_name_of_user"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:gravity="center"
-            android:orientation="vertical">
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardview_img_user"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                app:cardCornerRadius="@dimen/_5sdp"
-                app:layout_constraintBottom_toBottomOf="@+id/share_screen"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/share_screen">
-
-                <ImageView
-                    android:id="@+id/img_adults"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/user"
-                    android:scaleType="fitXY" />
-            </androidx.cardview.widget.CardView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Adult"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_13ssp"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:gravity="center"
-            android:orientation="vertical">
-            <androidx.cardview.widget.CardView
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                app:cardCornerRadius="@dimen/_5sdp"
-                app:layout_constraintBottom_toBottomOf="@+id/share_screen"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/share_screen">
-
-                <ImageView
-                    android:id="@+id/img_kid"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/logokid"
-                    android:scaleType="fitXY" />
-            </androidx.cardview.widget.CardView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Kid"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_13ssp"/>
-        </LinearLayout>
+            android:textColor="@color/white"
+            android:textSize="@dimen/_13ssp"/>
     </LinearLayout>
 
     <TextView
@@ -94,7 +60,7 @@
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ln_a"/>
+        app:layout_constraintTop_toBottomOf="@+id/ln_state"/>
 
     <ImageView
         android:layout_width="@dimen/_15sdp"
@@ -174,6 +140,39 @@
 
     <LinearLayout
         android:id="@+id/ln_setting"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_1sdp"
+        android:background="@color/background_more"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="10"
+        app:layout_constraintTop_toBottomOf="@+id/ln_my_list">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_weight="1"
+            android:src="@drawable/setting"
+            app:tint="@color/text_gray" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:text="Change password"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/text_gray"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_right"
+            app:tint="@color/gray_dot" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ln_update_password"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:layout_marginTop="@dimen/_1sdp"

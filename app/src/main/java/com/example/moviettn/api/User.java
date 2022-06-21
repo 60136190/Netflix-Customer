@@ -1,5 +1,6 @@
 package com.example.moviettn.api;
 
+import com.example.moviettn.model.NewPassLoginGoogle;
 import com.example.moviettn.model.request.ChangePasswordRequest;
 import com.example.moviettn.model.request.DeleteImageRequest;
 import com.example.moviettn.model.request.FeedBack;
@@ -53,6 +54,10 @@ public interface User {
     @PATCH("api/auth/customer/changePassword")
     Call<ResponseDTO> changePassword(@HeaderMap HashMap<String, String> hashMap, @Body ChangePasswordRequest changePasswordRequest);
 
+    // create password for user login with google
+    @PATCH("api/auth/customer/newPassword")
+    Call<ResponseDTO> createNewPass(@Header("Authorization") String authorization, @Body NewPassLoginGoogle newPassLoginGoogle);
+
     // getProfile
     @GET("api/auth/customer/profile")
     Call<ProfileResponse> getProfile(@Header("Authorization") String authorization);
@@ -85,4 +90,6 @@ public interface User {
     // send feedback
     @POST("api/feedback/send")
     Call<FeedBack> sendFeedback(@Header("Authorization") String authorization, @Body FeedBack feedBack);
+
+
 }

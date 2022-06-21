@@ -20,5 +20,5 @@
         android:id="@+id/more"
         android:enabled="true"
         android:icon="@drawable/download"
-        android:title="Downloads" />
+        android:title="More" />
 </menu>

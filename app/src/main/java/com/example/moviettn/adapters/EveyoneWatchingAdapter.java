@@ -91,7 +91,7 @@ public class EveyoneWatchingAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             public void onClick(View v) {
                 Intent i = new Intent(mContext, DetailFilmActivity.class);
                 String strName = film.getId();
-                i.putExtra("Id_film", strName);
+                StoreUtil.save(mContext,Contants.idFilm,strName);
                 mContext.startActivity(i);
             }
         });

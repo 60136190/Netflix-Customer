@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,12 +7,16 @@
     android:background="@color/black"
     tools:context=".fragments.MoreFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <TextView
         android:id="@+id/download"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
-        android:text="Downloads"
+        android:text="More"
         android:textColor="@color/white"
         android:textSize="@dimen/_20ssp"
         android:textStyle="bold"
@@ -124,14 +128,24 @@
         app:layout_constraintTop_toBottomOf="@+id/img_center"/>
 
     <Button
+        android:id="@+id/btn_history_bill"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_3sdp"
         android:backgroundTint="@color/white"
-        android:text="See What You Can Download"
+        android:text="Watch film you bought"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:layout_marginRight="@dimen/_40sdp"
         android:layout_marginLeft="@dimen/_40sdp"
         app:layout_constraintTop_toBottomOf="@+id/btn_setup"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gif_change_state"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="9dp"
+        android:visibility="gone"
+        android:src="@drawable/changestate" />
+</FrameLayout>

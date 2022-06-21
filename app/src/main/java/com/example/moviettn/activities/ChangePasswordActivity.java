@@ -30,17 +30,12 @@ import retrofit2.Response;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 
-    private ImageView imgBack;
-    private EditText edtNewPassword;
-    private EditText edtConfirmNewPassword;
-    private EditText edtOldPassword;
+    ImageView imgBack;
+    EditText edtNewPassword,edtOldPassword,edtConfirmNewPassword;
+    TextInputLayout tilOldpass,tilNewpass,tilConfirmNewpass;
+    Button btnSavePassword;
+    ProgressBar progressBar;
 
-    private TextInputLayout tilOldpass;
-    private TextInputLayout tilNewpass;
-    private TextInputLayout tilConfirmNewpass;
-
-    private Button btnSavePassword;
-    private ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,13 +78,17 @@ public class ChangePasswordActivity extends AppCompatActivity {
         String confirmNewPass = edtConfirmNewPassword.getText().toString();
         ChangePasswordRequest changePasswordRequest = new ChangePasswordRequest(oldpass,newpass,confirmNewPass);
 
-        if (validateOldPassword() && validateNewPassword() && validateConfirmNewPassword()) {
+        if (validateNewPassword() && validateConfirmNewPassword()) {
             Call<ResponseDTO> responseDTOCall = ApiClient.getUserService().changePassword(hashMap, changePasswordRequest);
             responseDTOCall.enqueue(new Callback<ResponseDTO>() {
                 @Override
                 public void onResponse(Call<ResponseDTO> call, Response<ResponseDTO> response) {
                     if (response.body().getStatus() == 200) {
                        setProgressBar();
+                    }else{
+                        Toast.makeText(ChangePasswordActivity.this
+                                , String.valueOf(response.body().getMsg())
+                                , Toast.LENGTH_SHORT).show();
                     }
                 }
 

@@ -43,6 +43,7 @@ public class SelectStateActivity extends AppCompatActivity {
                 UpdateStateUsertoAdultorKid("1");
                 Intent intent = new Intent(SelectStateActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

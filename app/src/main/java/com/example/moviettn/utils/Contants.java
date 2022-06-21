@@ -10,5 +10,12 @@ public class Contants {
     public static final String url = "url";
     public static final String tokenid = "tokenid";
     public static final String adult = "adult";
+    public static final String canWatch = "canWatch";
+    public static final String idFilm = "idFilm";
+    public static final String price = "price";
+    public static final String titleFilm = "titleFilm";
+    public static final String urlFilm = "urlFilm";
+
+
 }
 
