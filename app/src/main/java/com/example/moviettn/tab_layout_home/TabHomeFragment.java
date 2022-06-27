@@ -151,60 +151,62 @@ public class TabHomeFragment extends Fragment {
             public void onResponse(Call<AllFilmResponse> call, Response<AllFilmResponse> response) {
                 allFilmAdapter = new AllFilmAdapter(getContext(), response.body().getResults());
                 rcvFilm.setAdapter(allFilmAdapter);
-                String title = response.body().getResults().get(0).getData().get(0).getTitle();
-                String idFilm = response.body().getResults().get(0).getData().get(0).getId();
-                String img = response.body().getResults().get(0).getData().get(0).getImageTitle().getUrl();
-                tv_Title.setText(title);
+                if (response.body().getResults().size()!=0) {
+                    String title = response.body().getResults().get(0).getData().get(0).getTitle();
+                    String idFilm = response.body().getResults().get(0).getData().get(0).getId();
+                    String img = response.body().getResults().get(0).getData().get(0).getImageTitle().getUrl();
+                    tv_Title.setText(title);
 
-                Picasso.with(getContext())
-                        .load(img).error(R.drawable.backgroundslider).fit().centerInside().into(img_Film);
+                    Picasso.with(getContext())
+                            .load(img).error(R.drawable.backgroundslider).fit().centerInside().into(img_Film);
 
-                btn_Play.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent i = new Intent(getContext(), DetailFilmActivity.class);
-                        i.putExtra("Id_film", idFilm);
-                        startActivity(i);
-                    }
-                });
+                    btn_Play.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(getContext(), DetailFilmActivity.class);
+                            i.putExtra("Id_film", idFilm);
+                            startActivity(i);
+                        }
+                    });
 
-                img_AddMyList.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Call<ResponseDTO> responseDTOCall = ApiClient.getFilmService().addFavoriteFilm(
-                                StoreUtil.get(v.getContext(), Contants.accessToken), idFilm);
-                        responseDTOCall.enqueue(new Callback<ResponseDTO>() {
-                            @Override
-                            public void onResponse(Call<ResponseDTO> call, Response<ResponseDTO> response) {
-                                if (response.isSuccessful()) {
-                                    CountDownTimer countDownTimer = new CountDownTimer(3000, 1000) {
-                                        @Override
-                                        public void onTick(long millisUntilFinished) {
-                                           setProgres();
-                                        }
+                    img_AddMyList.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Call<ResponseDTO> responseDTOCall = ApiClient.getFilmService().addFavoriteFilm(
+                                    StoreUtil.get(v.getContext(), Contants.accessToken), idFilm);
+                            responseDTOCall.enqueue(new Callback<ResponseDTO>() {
+                                @Override
+                                public void onResponse(Call<ResponseDTO> call, Response<ResponseDTO> response) {
+                                    if (response.isSuccessful()) {
+                                        CountDownTimer countDownTimer = new CountDownTimer(3000, 1000) {
+                                            @Override
+                                            public void onTick(long millisUntilFinished) {
+                                                setProgres();
+                                            }
 
-                                        @Override
-                                        public void onFinish() {
-                                            setProgres();
-                                        }
+                                            @Override
+                                            public void onFinish() {
+                                                setProgres();
+                                            }
 
-                                    };
-                                    countDownTimer.start();
+                                        };
+                                        countDownTimer.start();
+                                    }
                                 }
-                            }
 
-                            @Override
-                            public void onFailure(Call<ResponseDTO> call, Throwable t) {
-                            }
-                        });
-                    }
-                });
-            }
+                                @Override
+                                public void onFailure(Call<ResponseDTO> call, Throwable t) {
+                                }
+                            });
+                        }
+                    });
+                }
+                }
 
-            @Override
-            public void onFailure(Call<AllFilmResponse> call, Throwable t) {
-                t.printStackTrace();
-            }
+                @Override
+                public void onFailure (Call < AllFilmResponse > call, Throwable t){
+                    t.printStackTrace();
+                }
         });
     }
 

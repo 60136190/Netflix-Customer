@@ -10,6 +10,9 @@ public class Film implements Serializable {
     @SerializedName("image_film")
     @Expose
     private ImageFilm imageFilm;
+    @SerializedName("image_title")
+    @Expose
+    private ImageFilm image_title;
     @SerializedName("_id")
     @Expose
     private String id;
@@ -59,6 +62,14 @@ public class Film implements Serializable {
 
     public void setImageFilm(ImageFilm imageFilm) {
         this.imageFilm = imageFilm;
+    }
+
+    public ImageFilm getImage_title() {
+        return image_title;
+    }
+
+    public void setImage_title(ImageFilm image_title) {
+        this.image_title = image_title;
     }
 
     public String getId() {

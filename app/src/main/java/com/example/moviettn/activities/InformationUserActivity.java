@@ -64,27 +64,45 @@ public class InformationUserActivity extends AppCompatActivity {
                 String fullName = response.body().getUser().getFullname();
                 String email = response.body().getUser().getEmail();
                 String im = response.body().getUser().getImage().getUrl();
-                String date_of_birth = response.body().getUser().getDateOfBirth();
-                String sdt = response.body().getUser().getPhoneNumber();
+                if((response.body().getUser().getDateOfBirth().isEmpty())
+                        && (response.body().getUser().getSex() == null)
+                        && (response.body().getUser().getPhoneNumber().isEmpty())){
+                    tvSex.setText("");
+                    tvDateOfBirth.setText("");
+                    tvPhoneNumber.setText("");
+                    tvFullName.setText(fullName);
+                    tvEmail.setText(email);
+                    if (im.isEmpty()) {
+                        imgUser.setImageResource(R.drawable.backgroundslider);
+                    }else{
+                        Glide.with(getApplicationContext())
+                                .load(im)
+                                .into(imgUser);
+                    }
+                }else {
 
-                tvFullName.setText(fullName);
-                tvEmail.setText(email);
-                tvDateOfBirth.setText(date_of_birth);
-                tvPhoneNumber.setText(sdt);
+                    String date_of_birth = response.body().getUser().getDateOfBirth();
+                    String sdt = response.body().getUser().getPhoneNumber();
+                    tvFullName.setText(fullName);
+                    tvEmail.setText(email);
+                    tvDateOfBirth.setText(date_of_birth);
+                    tvPhoneNumber.setText(sdt);
 
-                if (im.isEmpty()) {
-                    imgUser.setImageResource(R.drawable.backgroundslider);
-                }else{
-                    Glide.with(getApplicationContext())
-                            .load(im)
-                            .into(imgUser);
+                    if (im.isEmpty()) {
+                        imgUser.setImageResource(R.drawable.backgroundslider);
+                    }else{
+                        Glide.with(getApplicationContext())
+                                .load(im)
+                                .into(imgUser);
+                    }
+                    if (response.body().getUser().getSex() == 1) {
+                        tvSex.setText("Male");
+                    } else {
+                        tvSex.setText("Female");
+
+                    }
                 }
-                if (response.body().getUser().getSex() == 1) {
-                    tvSex.setText("Male");
-                } else {
-                    tvSex.setText("Female");
 
-                }
             }
 
             @Override

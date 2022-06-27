@@ -207,7 +207,7 @@ public class DetailFilmActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<DetailFilmResponse> call, Response<DetailFilmResponse> response) {
                 if (response.isSuccessful()) {
-                    String path = response.body().getData().get(0).getSeriesFilm().get(0).getUrlVideo();
+                    String path = response.body().getData().get(0).getVideoFilm().getUrl();
 
                     vdFilm.setVideoPath(path);
                     vdFilm.start();

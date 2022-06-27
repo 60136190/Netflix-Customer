@@ -1,5 +1,6 @@
 package com.example.moviettn.model;
 
+import com.example.moviettn.model.response.Video;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -10,6 +11,13 @@ public class DetailFilm implements Serializable {
     @SerializedName("image_film")
     @Expose
     private ImageFilm imageFilm;
+    @SerializedName("image_title")
+    @Expose
+    private Image imageTitle;
+
+    @SerializedName("video_film")
+    @Expose
+    private Video videoFilm;
     @SerializedName("_id")
     @Expose
     private String id;
@@ -59,6 +67,22 @@ public class DetailFilm implements Serializable {
 
     public void setImageFilm(ImageFilm imageFilm) {
         this.imageFilm = imageFilm;
+    }
+
+    public Image getImageTitle() {
+        return imageTitle;
+    }
+
+    public void setImageTitle(Image imageTitle) {
+        this.imageTitle = imageTitle;
+    }
+
+    public Video getVideoFilm() {
+        return videoFilm;
+    }
+
+    public void setVideoFilm(Video videoFilm) {
+        this.videoFilm = videoFilm;
     }
 
     public String getId() {

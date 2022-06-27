@@ -40,7 +40,7 @@ public class DetailFilmFollowOptionActivity extends AppCompatActivity {
                 rcvCategory.setLayoutManager(gridLayoutManager);
             }
 
-            if(b.get("option").equals("0")){
+            if (b.get("option").equals("0")){
                 String idDirector = (String) b.get("id_director");
                 String nameOfDirector = (String) b.get("name_of_director");
                 tvCategory.setText(nameOfDirector);

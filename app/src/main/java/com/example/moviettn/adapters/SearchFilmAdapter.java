@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.moviettn.R;
 import com.example.moviettn.activities.DetailFilmActivity;
 import com.example.moviettn.model.Film;
+import com.example.moviettn.utils.Contants;
+import com.example.moviettn.utils.StoreUtil;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -53,10 +55,13 @@ import java.util.List;
 
             ((ItemViewHolder) holder).imgPlay.setOnClickListener(new View.OnClickListener() {
                 @Override
+
                 public void onClick(View v) {
                     Intent i = new Intent(mContext, DetailFilmActivity.class);
-                    String strName = film.getId();
-                    i.putExtra("Id_film", strName);
+                    StoreUtil.save(mContext, Contants.idFilm,film.getId());
+                    StoreUtil.save(mContext,Contants.price,String.valueOf(film.getPrice()));
+                    StoreUtil.save(mContext,Contants.titleFilm,String.valueOf(film.getTitle()));
+                    StoreUtil.save(mContext,Contants.urlFilm,String.valueOf(film.getImageFilm().getUrl()));
                     mContext.startActivity(i);
 
                 }

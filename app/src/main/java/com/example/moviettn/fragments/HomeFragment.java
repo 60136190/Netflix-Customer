@@ -157,6 +157,7 @@ public class HomeFragment extends Fragment {
 
                             } else {
                                 setProgressBar();
+                                signOut();
                             }
                         }
 

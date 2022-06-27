@@ -43,14 +43,16 @@ public class ListHistoryBillAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         HistoryBill history = historyBills.get(position);
-        String img = history.getFilm().getImageFilm().getUrl();
+
+
+        if (history.getFilm().getImageFilm() != null ){
+            Picasso.with(mContext)
+                    .load(history.getFilm().getImageFilm().getUrl()).fit().centerInside().into(((ItemViewHolder) holder).itemImage);
+        }
         String strDate = history.getDatePurchase();
         ((ItemViewHolder)holder).tvPrice.setText(String.valueOf(history.getPrice() + " $"));
         ((ItemViewHolder) holder).tvDatePurchase.setText(strDate.substring(0,10));
         ((ItemViewHolder)holder).tvTitleFilm.setText(history.getFilm().getTitle());
-
-        Picasso.with(mContext)
-                .load(img).fit().centerInside().into(((ItemViewHolder) holder).itemImage);
 
         ((ItemViewHolder)holder).cardListBill.setOnClickListener(new View.OnClickListener() {
             @Override

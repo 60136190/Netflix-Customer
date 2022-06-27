@@ -66,7 +66,7 @@ public class TestCreateBillActivity extends AppCompatActivity {
         String titleFilm = StoreUtil.get(TestCreateBillActivity.this,Contants.titleFilm);
         String urlFilm = StoreUtil.get(TestCreateBillActivity.this,Contants.urlFilm);
 
-        tvPrice.setText(String.valueOf(price));
+        tvPrice.setText(String.valueOf(price+" $"));
         tvModeOfPayment.setText(String.valueOf(name));
         Picasso.with(TestCreateBillActivity.this).load(url).into(imgModeOfPayment);
 
@@ -140,7 +140,7 @@ public class TestCreateBillActivity extends AppCompatActivity {
 
     private void createBill() {
             StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                    "http://192.168.2.68:5000/api/bill/Paypal/create",
+                    "https://thainammovie.herokuapp.com/api/bill/Paypal/create",
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
