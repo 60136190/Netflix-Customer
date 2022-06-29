@@ -4,35 +4,46 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/_10sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_img_film"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_160sdp"
-        app:cardCornerRadius="@dimen/_10sdp"
-        android:layout_marginLeft="@dimen/_3sdp"
-        android:background="@color/white"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/img_banner"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_img_film"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:src="@drawable/slidera"/>
-        <TextView
-            android:id="@+id/tv_limit_age"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_margin="@dimen/_10sdp"
-            android:text="3+"
-            android:paddingLeft="@dimen/_3sdp"
-            android:paddingRight="@dimen/_3sdp"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/black"
-            android:background="@drawable/border_background_2sdp"
-            android:textSize="@dimen/_10ssp"/>
-    </androidx.cardview.widget.CardView>
+            android:layout_height="@dimen/_160sdp"
+            app:cardCornerRadius="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_3sdp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_banner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY" />
+            <TextView
+                android:id="@+id/tv_limit_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="3+"
+                android:paddingLeft="@dimen/_3sdp"
+                android:paddingRight="@dimen/_3sdp"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/black"
+                android:background="@drawable/border_background_2sdp"
+                android:textSize="@dimen/_10ssp"/>
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/spin_kit"
+                style="@style/SpinKitView.Small.Circle"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:max="150"
+                android:progress="10"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                app:SpinKit_Color="@color/second_red" />
+
+        </androidx.cardview.widget.CardView>
+
 
     <ImageView
         android:id="@+id/netflix"

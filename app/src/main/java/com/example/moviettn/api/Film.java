@@ -75,6 +75,9 @@ public interface Film {
     @GET("api/favourite/getList")
     Call<ListFavoriteFilmResponse> getListFavoriteFilm(@Header("Authorization") String authorization);
 
+    // delete all film in list favorite
+    @DELETE("api/favourite/delete")
+    Call<ResponseDTO> deleteAllFilmInListFavorite (@Header("Authorization") String authorization);
     // add rating film
     @POST("api/rating/add/{id}")
     Call<ResponseDTO> addRatingFilm(@Header("Authorization") String authorization, @Path("id") String idFilm, @Body RatingRequest ratingRequest);

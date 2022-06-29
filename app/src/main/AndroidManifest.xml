@@ -24,6 +24,9 @@
         android:theme="@style/Theme.MovieTTN"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.ConfirmPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.TestCreateBillActivity"
             android:exported="false" />
         <activity

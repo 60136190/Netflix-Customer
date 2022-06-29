@@ -85,6 +85,7 @@
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/drawable/white_round.xml" value="0.19166666666666668" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/activity_bill.xml" value="0.16145833333333334" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/activity_change_password.xml" value="0.17552083333333332" />
+        <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/activity_confirm_password.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/activity_detail_bill.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/activity_detail_category_film.xml" value="0.22" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/activity_detail_film.xml" value="0.14666666666666667" />
@@ -120,6 +121,7 @@
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/dialog_confirm_delete.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/dialog_confirm_logout.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/dialog_edit_comment.xml" value="0.17552083333333332" />
+        <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/dialog_info_film.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/dialog_kid.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_coming_soon.xml" value="0.17552083333333332" />
         <entry key="..\:/AndroidStudio/MovieTTN/app/src/main/res/layout/fragment_discorvery.xml" value="0.17552083333333332" />

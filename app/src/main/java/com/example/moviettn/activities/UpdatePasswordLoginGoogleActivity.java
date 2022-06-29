@@ -131,6 +131,7 @@ public class UpdatePasswordLoginGoogleActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.INVISIBLE);
                 Intent intent = new Intent(UpdatePasswordLoginGoogleActivity.this,SelectStateActivity.class);
                 startActivity(intent);
+                finish();
             }
 
         };

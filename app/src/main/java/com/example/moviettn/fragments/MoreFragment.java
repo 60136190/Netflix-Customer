@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.moviettn.R;
 import com.example.moviettn.activities.ChangePasswordActivity;
+import com.example.moviettn.activities.ConfirmPasswordActivity;
 import com.example.moviettn.activities.HistoryBillActivity;
 import com.example.moviettn.activities.InformationUserActivity;
 import com.example.moviettn.activities.ListFavotireActivity;
@@ -86,9 +87,12 @@ public class MoreFragment extends Fragment {
                 img_Adults.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        UpdateStateUsertoAdultorKid("1");
-                        bottomSheetDialog.dismiss();
-                        getProfile();
+                        Intent intent = new Intent(getContext(), ConfirmPasswordActivity.class);
+                        startActivity(intent);
+
+//                        UpdateStateUsertoAdultorKid("1");
+//                        bottomSheetDialog.dismiss();
+//                        getProfile();
                     }
                 });
                 img_Kid.setOnClickListener(new View.OnClickListener() {
@@ -171,5 +175,11 @@ public class MoreFragment extends Fragment {
 
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getProfile();
     }
 }

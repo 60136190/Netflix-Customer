@@ -1,7 +1,10 @@
 package com.example.moviettn.tab_layout_home;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -14,6 +17,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -48,7 +53,7 @@ public class TabHomeFragment extends Fragment {
     RecyclerView rcvFilm;
     AllFilmAdapter allFilmAdapter;
     TextView tv_Title, tvMyList;
-    ImageView img_Film, img_AddMyList;
+    ImageView img_Film, img_AddMyList, infoFilm;
     Button btn_Play;
     ProgressBar progressBar;
     View view;
@@ -67,6 +72,7 @@ public class TabHomeFragment extends Fragment {
     private void initUi() {
         rcvFilm = view.findViewById(R.id.rcv_film);
         img_Film = view.findViewById(R.id.img_film);
+        infoFilm = view.findViewById(R.id.img_info);
         btn_Play = view.findViewById(R.id.btn_play);
         img_AddMyList = view.findViewById(R.id.img_my_list);
         progressBar = (ProgressBar) view.findViewById(R.id.spin_kit);
@@ -84,6 +90,8 @@ public class TabHomeFragment extends Fragment {
                 rcvFilm.setAdapter(allFilmAdapter);
                 String title = response.body().getResults().get(0).getData().get(0).getTitle();
                 String idFilm = response.body().getResults().get(0).getData().get(0).getId();
+                String price = String.valueOf(response.body().getResults().get(0).getData().get(0).getPrice());
+                String description = response.body().getResults().get(0).getData().get(0).getDescription();
                 String img = response.body().getResults().get(0).getData().get(0).getImageTitle().getUrl();
                 tv_Title.setText(title);
                 img_AddMyList.setVisibility(View.VISIBLE);
@@ -100,6 +108,35 @@ public class TabHomeFragment extends Fragment {
                         startActivity(i);
                     }
                 });
+
+                infoFilm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(getContext(), DetailFilmActivity.class);
+                        i.putExtra("Id_film", idFilm);
+                        startActivity(i);
+                    }
+                });
+
+                    String delim = " •";
+                    int i = 0;
+                    StringBuilder str = new StringBuilder();
+                    StringBuilder strCategory = new StringBuilder();
+                    while (i < response.body().getResults().get(0).getData().get(0).getDirector().size()-1) {
+                        str.append(response.body().getResults().get(0).getData().get(0).getDirector().get(i).getName());
+                        str.append(delim);
+                        i++;
+                    }
+                    str.append(response.body().getResults().get(0).getData().get(0).getDirector().get(i).getName());
+                    String directors = str.toString();
+
+                while (i < response.body().getResults().get(0).getData().get(0).getCategory().size()-1) {
+                    strCategory.append(response.body().getResults().get(0).getData().get(0).getCategory().get(i).getName());
+                    strCategory.append(delim);
+                    i++;
+                }
+                strCategory.append(response.body().getResults().get(0).getData().get(0).getCategory().get(i).getName());
+                String category = strCategory.toString();
 
                 img_AddMyList.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -161,6 +198,15 @@ public class TabHomeFragment extends Fragment {
                             .load(img).error(R.drawable.backgroundslider).fit().centerInside().into(img_Film);
 
                     btn_Play.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(getContext(), DetailFilmActivity.class);
+                            i.putExtra("Id_film", idFilm);
+                            startActivity(i);
+                        }
+                    });
+
+                    infoFilm.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Intent i = new Intent(getContext(), DetailFilmActivity.class);
@@ -260,4 +306,5 @@ public class TabHomeFragment extends Fragment {
         };
         countDownTimer.start();
     }
+
 }

@@ -45,6 +45,16 @@
             android:backgroundTint="@color/black"
             android:background="@drawable/border_background_2sdp"
             android:textSize="@dimen/_10ssp"/>
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/spin_kit"
+            style="@style/SpinKitView.Small.Circle"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:max="150"
+            android:progress="10"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            app:SpinKit_Color="@color/second_red" />
     </androidx.cardview.widget.CardView>
 
     <TextView

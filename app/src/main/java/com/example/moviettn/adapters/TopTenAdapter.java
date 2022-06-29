@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ import com.example.moviettn.model.Film;
 import com.example.moviettn.model.response.ResponseDTO;
 import com.example.moviettn.utils.Contants;
 import com.example.moviettn.utils.StoreUtil;
+import com.github.ybq.android.spinkit.style.Circle;
 import com.squareup.picasso.Picasso;
 //import com.steelkiwi.library.SlidingSquareLoaderView;
 
@@ -63,16 +65,24 @@ public class TopTenAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                         @Override
                         public void onResponse(Call<ResponseDTO> call, Response<ResponseDTO> response) {
                             if (response.isSuccessful()) {
+                                Circle cubeGrid = new Circle();
+                                ((ItemViewHolder) holder).progressBar.setIndeterminateDrawable(cubeGrid);
+                                ((ItemViewHolder) holder).progressBar.setVisibility(View.VISIBLE);
+
                                 CountDownTimer countDownTimer = new CountDownTimer(3000, 1000) {
                                     @Override
                                     public void onTick(long millisUntilFinished) {
-//                                    ((ItemViewHolder) holder).slidingSquareLoaderView.show();
+                                        int current = ((ItemViewHolder) holder).progressBar.getProgress();
+                                        if (current >= ((ItemViewHolder) holder).progressBar.getMax()) {
+                                            current = 0;
+                                        }
+                                        ((ItemViewHolder) holder).progressBar.setProgress(current + 10);
+
                                     }
 
                                     @Override
                                     public void onFinish() {
-//                                    ((ItemViewHolder) holder).slidingSquareLoaderView.setVisibility(View.INVISIBLE);
-
+                                        ((ItemViewHolder) holder).progressBar.setVisibility(View.INVISIBLE);
                                     }
 
                                 };
@@ -138,6 +148,7 @@ public class TopTenAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         private TextView itemStoryLine;
         private TextView itemTitle;
         private TextView itemDirectors;
+        ProgressBar progressBar;
 //        private SlidingSquareLoaderView slidingSquareLoaderView;
 
         public ItemViewHolder( View itemView) {
@@ -150,6 +161,7 @@ public class TopTenAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             itemLimitAge = itemView.findViewById(R.id.tv_limit_age);
             itemStoryLine = itemView.findViewById(R.id.tv_storyline);
             itemDirectors = itemView.findViewById(R.id.tv_directors);
+            progressBar = itemView.findViewById(R.id.spin_kit);
 //            itemSeriesFilm = itemView.findViewById(R.id.tv_series_film);
             itemLogo = itemView.findViewById(R.id.img_logo_netflix);
 //            slidingSquareLoaderView = itemView.findViewById(R.id.progress_item_add_list);

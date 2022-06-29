@@ -1,9 +1,14 @@
 package com.example.moviettn.adapters;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,6 +43,9 @@ public class ComingSoonAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Film film = mFilmList.get(position);
         String imageUrl = film.getImageFilm().getUrl();
+        String titleFilm = film.getTitle();
+        String description = film.getDescription();
+        String price = String.valueOf(film.getPrice()+" $");
         ((ItemViewHolder) holder).itemTitle.setText(film.getTitle());
         ((ItemViewHolder) holder).itemStoryLine.setText(film.getDescription());
         ((ItemViewHolder) holder).itemLimitAge.setText(film.getAgeLimit()+"+");
@@ -62,6 +70,12 @@ public class ComingSoonAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         Picasso.with(mContext)
                 .load(imageUrl).error(R.drawable.backgroundslider).fit().centerInside().into(((ItemViewHolder) holder).itemBanner);
 
+        ((ItemViewHolder) holder).imgInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                infoFilm(titleFilm,description,price,imageUrl);
+            }
+        });
     }
 
 
@@ -76,8 +90,7 @@ public class ComingSoonAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
         private ImageView itemBanner;
-        private TextView itemDate;
-        private TextView itemMonth;
+        private ImageView imgInfo;
         private TextView itemLimitAge;
         private TextView itemStoryLine;
         private TextView itemTitle;
@@ -87,12 +100,42 @@ public class ComingSoonAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             super(itemView);
             itemBanner = itemView.findViewById(R.id.img_banner);
             itemTitle = itemView.findViewById(R.id.tv_title_film);
-            itemDate = itemView.findViewById(R.id.tv_date);
-            itemMonth = itemView.findViewById(R.id.tv_month);
             itemLimitAge = itemView.findViewById(R.id.tv_limit_age);
             itemStoryLine = itemView.findViewById(R.id.tv_storyline);
             itemDirectors = itemView.findViewById(R.id.tv_directors);
+            imgInfo = itemView.findViewById(R.id.img_info);
         }
+    }
+
+    public void infoFilm(String title, String description
+            , String price, String img){
+        Dialog dialog = new Dialog(mContext);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_info_film);
+
+        Window window = dialog.getWindow();
+        if (window == null) {
+            return;
+        }
+
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        WindowManager.LayoutParams windowAtribute = window.getAttributes();
+        window.setAttributes(windowAtribute);
+
+        TextView tvTitleFilm = dialog.findViewById(R.id.tv_title_film);
+        TextView tvDescription = dialog.findViewById(R.id.tv_description);
+        TextView tvPrice = dialog.findViewById(R.id.tv_price);
+        ImageView imgFilm = dialog.findViewById(R.id.img_film);
+
+        tvTitleFilm.setText(title);
+        tvDescription.setText(description);
+        tvPrice.setText(price);
+        Picasso.with(mContext).load(img).into(imgFilm);
+
+        // show dialog
+        dialog.show();
     }
 
 }
