@@ -2,6 +2,7 @@ package com.example.moviettn.api;
 
 import com.example.moviettn.model.NewPassLoginGoogle;
 import com.example.moviettn.model.request.ChangePasswordRequest;
+import com.example.moviettn.model.request.CheckPassword;
 import com.example.moviettn.model.request.DeleteImageRequest;
 import com.example.moviettn.model.request.FeedBack;
 import com.example.moviettn.model.request.ForgetPasswordRequest;
@@ -61,6 +62,10 @@ public interface User {
     // getProfile
     @GET("api/auth/customer/profile")
     Call<ProfileResponse> getProfile(@Header("Authorization") String authorization);
+
+    // check password
+    @POST("api/auth/customer/checkPassword")
+    Call<ResponseDTO> checkPassword(@Header("Authorization") String authorization,@Body CheckPassword checkPassword);
 
     // uploadImage
     @Multipart

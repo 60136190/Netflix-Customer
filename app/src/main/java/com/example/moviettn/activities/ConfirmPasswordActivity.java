@@ -11,8 +11,10 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.moviettn.R;
 import com.example.moviettn.api.ApiClient;
+import com.example.moviettn.model.request.CheckPassword;
 import com.example.moviettn.model.request.UpdateStateUserRequest;
 import com.example.moviettn.model.response.ProfileResponse;
+import com.example.moviettn.model.response.ResponseDTO;
 import com.example.moviettn.model.response.UpdateStateUserResponse;
 import com.example.moviettn.utils.Contants;
 import com.example.moviettn.utils.StoreUtil;
@@ -23,7 +25,7 @@ import retrofit2.Response;
 
 public class ConfirmPasswordActivity extends AppCompatActivity {
 
-    EditText edtEmail;
+    EditText edtPassword;
     Button btnCheck;
     UpdateStateUserRequest updateStateUserRequest;
     @Override
@@ -35,25 +37,24 @@ public class ConfirmPasswordActivity extends AppCompatActivity {
         btnCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Call<ProfileResponse> proifileResponseCall = ApiClient.getUserService().getProfile(
-                        StoreUtil.get(ConfirmPasswordActivity.this, "Authorization"));
-                proifileResponseCall.enqueue(new Callback<ProfileResponse>() {
+                String password = edtPassword.getText().toString();
+                CheckPassword checkPassword = new CheckPassword(password);
+                Call<ResponseDTO> proifileResponseCall = ApiClient.getUserService().checkPassword(
+                        StoreUtil.get(ConfirmPasswordActivity.this, "Authorization"),checkPassword);
+                proifileResponseCall.enqueue(new Callback<ResponseDTO>() {
                     @Override
-                    public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
-                        if (response.isSuccessful()) {
-                            String sdt = edtEmail.getText().toString();
-                            if (sdt.equals(response.body().getUser().getEmail())){
-                                UpdateStateUsertoAdultorKid("1");
-                                finish();
-                            }else{
-                                Toast.makeText(ConfirmPasswordActivity.this, "Phone number is wrong", Toast.LENGTH_SHORT).show();
-                            }
+                    public void onResponse(Call<ResponseDTO> call, Response<ResponseDTO> response) {
+                        if (response.body().getStatus() == 200) {
+                            UpdateStateUsertoAdultorKid("1");
+                            finish();
+                        }else{
+                            Toast.makeText(ConfirmPasswordActivity.this, "Your password is not correct", Toast.LENGTH_SHORT).show();
                         }
 
                     }
 
                     @Override
-                    public void onFailure(Call<ProfileResponse> call, Throwable t) {
+                    public void onFailure(Call<ResponseDTO> call, Throwable t) {
                         Toast.makeText(ConfirmPasswordActivity.this, "Error", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -62,7 +63,7 @@ public class ConfirmPasswordActivity extends AppCompatActivity {
     }
 
     private void initUi() {
-        edtEmail = findViewById(R.id.edt_email);
+        edtPassword = findViewById(R.id.edt_password);
         btnCheck = findViewById(R.id.btn_check);
     }
 
